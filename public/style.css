@@ -1,0 +1,45 @@
+html {
+    background-color: #8FE6F5;
+}
+
+.white_container {
+    background-color: white;
+    width: 650px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.3); 
+}
+
+.main_container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add_button {
+    border-radius: 100%;
+    background-color: #5FCBDF;
+    height: 70px;
+    width: 70px;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add {
+    width: 50px;
+    height: 50px;
+}
+
+.mascot {
+    width: 300px;
+    height: 300px;
+}
