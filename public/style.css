@@ -43,3 +43,17 @@ html {
     width: 300px;
     height: 300px;
 }
+
+.mascot-select {
+    width: 150px;
+    height: 150px;
+    margin:30px;
+    margin-top: 60px;
+    
+}
+
+.mascot-select:hover {
+    transition: all .1s ease-in-out;
+    transform: scale(1.5);
+    filter: drop-shadow(2px 2px 8px #5FCBDF);
+}
