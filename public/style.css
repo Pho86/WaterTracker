@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 html {
     background-color: #8FE6F5;
 }
@@ -5,6 +6,8 @@ html {
 body {
     padding:0;
     margin:0;
+    font-family: 'Varela Round', sans-serif
+    
 }
 
 .white_container {
@@ -117,4 +120,8 @@ body {
     border-radius: 20px;
     height: 40px;
     width:150px;
+}
+
+.palCont{
+    padding: 5%;
 }
