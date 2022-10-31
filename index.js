@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const db = require('./create-tables');
 const app = express();
 const port = 3000;
 
@@ -27,11 +28,15 @@ var user = {};
 app.post('/select-pal', (req, res) => {
     // console.log(req.body);
     user = req.body;
+    db.run("INSERT INTO users (name, petType) values (?,?)", [name, age]);
     console.log(user)
     res.sendFile(path.join(petpagePath), user);
 })
 
 app.post('/home', (req, res) => {
+    db.each("SELECT * FROM users", (err, row) => {
+        console.log(row);
+    });
     if (req.body.pet) {
         user.pet = req.body.pet
         console.log(user)
