@@ -12,6 +12,7 @@ html {
     align-items: center;
     border-radius: 20px;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.3); 
+    padding: 10px 20px 10px;
 }
 
 .main_container {
@@ -23,25 +24,33 @@ html {
     align-items: center;
 }
 
-.add_button {
-    border-radius: 100%;
-    background-color: #5FCBDF;
-    height: 70px;
-    width: 70px;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.2); 
+.bottom-section {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
+    width: inherit;
 }
 
+/* Text */
+
+.goal-header {
+    align-self: flex-start;
+    margin: 0;
+ }
+
+
+ 
+/* Buttons */
 .add {
     width: 50px;
     height: 50px;
+    align-self: flex-end;
 }
 
 .mascot {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
 
 .mascot-select {
@@ -52,8 +61,50 @@ html {
     
 }
 
+.progress-bar {
+    width: 550px;
+    background-color: #5FCBDF;
+    border-radius: 50px;
+    align-self: flex-start;
+}
+
+.progress-bar::-webkit-progress-bar {
+    background-color: #C7F3FC;
+    border-radius: 5px;
+  }
+
+
+.progress-bar::-webkit-progress-value {
+    background-color: #5FCBDF;
+    border-radius: 5px;
+  }
+  
+
+
 .mascot-select:hover {
     transition: all .1s ease-in-out;
     transform: scale(1.5);
     filter: drop-shadow(2px 2px 8px #5FCBDF);
+}
+
+.username {
+    width: 100px;
+    background-color: #C7F3FC;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.history {
+    width: 300px;
+    background-color: #C7F3FC;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.goal-input {
+    background-color: #E8E8E8;
+    border-radius: 20px;
+    height: 40px;
+    width:150px;
 }

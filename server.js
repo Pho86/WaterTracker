@@ -4,6 +4,7 @@ const port = 3000;
 const app = express();
 app.use(express.static(__dirname));
 app.use(express.json())
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 
 const homepagePath = __dirname + '/index.html'
