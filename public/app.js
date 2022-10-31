@@ -23,8 +23,8 @@ goal();
 // goal2();
 
 function updateName(name) {
-   let userName = document.querySelector('.today_goal');
-   userName.innerText = "Today's Goal for " + name
+   let userName = document.querySelector('.username');
+   userName.innerText =  name
 }
 function updatePet(petType) {
    let pet = document.querySelector('.mascot');
