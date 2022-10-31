@@ -28,7 +28,7 @@ var user = {};
 app.post('/select-pal', (req, res) => {
     // console.log(req.body);
     user = req.body;
-    db.run("INSERT INTO users (name, petType) values (?,?)", [name, age]);
+    // db.run("INSERT INTO users (name, petType) values (?,?)", [name, age]);
     console.log(user)
     res.sendFile(path.join(petpagePath), user);
 })
