@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaterTracker</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WaterTracker</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
+
 <body>
-    <div class="main_container">
-        <div class="white_container">
-            <h1>Select a Pal</h1>
-            <div>
-                <img class="mascot-select" src="monkee.svg">
-                <img class="mascot-select" src="otter.svg">
-            </div>
-        </div>
+  <div class="main_container">
+    <div class="white_container">
+      <h1 class="header">Select a Pal</h1>
+      <div>
+        <!-- <img class="mascot-select" src="monkee.svg" /> -->
+        <!-- <img class="mascot-select" src="otter.svg" /> -->
+        <form action="/home" method="post">
+          <!-- <input type="hidden" name="pet" /> -->
+          <button type="submit" src="/monkee.svg" name="pet" value="monkee" class="mascot-select-button">
+            <img class="mascot-select" src="monkee.svg" />
+          <button type="submit" src="/monkee.svg" name="pet" value="otter" class="mascot-select-button">
+            <img class="mascot-select" src="otter.svg" />
+              <!-- <input
+              type="image"
+              id="image"
+              name="monkee"
+              src="/monkee.svg"
+              class="mascot-select"
+            />
+            <input
+              type="image"
+              id="image"
+              name="otter"
+              src="/otter.svg"
+              class="mascot-select"
+              
+            /> -->
+        </form>
+      </div>
     </div>
+  </div>
 </body>
+<script src="app.js"></script>
+
 </html>
