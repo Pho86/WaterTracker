@@ -7,21 +7,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WaterTracker</title>
   <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 
 <body>
   <div class="main_container">
     <div class="white_container">
+      <div class="goal_gradient"></div>
       <h1 class="header today_goal">Today's Goal</h1>
-      <p class="current_goal">1000ml</p>
-      <img class="mascot" src="monkee.png" />
-      <div class="add_button">
-        <img class="add" src="add.svg" />
+
+      <img class="mascot" src="monkee.svg" />
+      <div class="bottom_section">
+        <progress class="progress_bar" max="100" value="0">
+        </progress>
+        <p class="current_goal">0mL/<br>1000mL</p>
       </div>
-      <p>Add a glass</p>
+      <div class="bottom_section">
+        <div class="username">Slayerina</div>
+        <select class="history">
+          <option>History Placeholder</option>
+        </select>
+        <img class="add" src="glasscup.svg" />
+      </div>
     </div>
-    <button onclick="goal()"></button>
-    <button onclick="goal2()"></button>
+    <form method="post" action="/home">
+      <button type="submit" name="drank" value=100>100mL</button>
+      <button type="submit" name="drank" value=250>250mL</button>
+      <button type="submit" name="drank" value=500>500mL</button>
+      <!-- <input type="number" name="drank" min="1" max="2000"> -->
+      <!-- <button type="submit">Confirm</button> -->
+    </form>
   </div>
 
   <script src="app.js"></script>
