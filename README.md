@@ -2,7 +2,7 @@
 Basic Node.js and Express app that tracks a users water goal and intake.
 <br>
 <br>
-run the app with npm run dev or node . or nodemon index.js,
+run the app with npm run dev or node . or nodemon server.js,
 if errors occur when launching just delete node_modules and package-lock.json and npm install to reinstall packages
 # Aqua Pal
 

@@ -39,11 +39,8 @@ goal();
 
 function updateName(name) {
    let userName = document.querySelector('.username');
-<<<<<<< HEAD
-   userName.innerText = name
-=======
    userName.innerText =  name
->>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
+
 }
 // export {updateName}
 
@@ -58,7 +55,11 @@ function updateWater(current, goal) {
    if (current == undefined) {
       current = 0;
    }
-   currentGoal.innerText = `${current}mL/\n${goal}mL`;
+   if (goal == undefined) {
+      goal = 1;
+   }
+   // currentGoal.innerText = `${current}mL/\n${goal}mL`;
+   currentGoal.innerText = `${current}mL/${goal}mL`;
    let progress = Number(current) / Number(goal);
    console.log(progress)
    progressBar.value = progress * 100;
@@ -75,7 +76,8 @@ function finishGoal() {
 }
 
 let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4 150 mL"];
-// idk how to do this tbh but ok
+
+// idk how to do this but ok
 function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";

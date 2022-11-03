@@ -46,7 +46,7 @@ app.post('/home', (req, res) => {
     // db.each("SELECT * FROM users", (err, row) => {
     //     console.log(row);
     // });
-    // console.log(req.body)
+    console.log(req.body)
     if (req.body.goal) {
         user.goal = req.body.goal
         console.log(user)
