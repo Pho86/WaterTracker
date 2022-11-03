@@ -107,6 +107,7 @@ body {
 .next{
     padding: 10px;
 }
+
 .new_goal {
     width:200px;
     height: 40px;
@@ -115,11 +116,12 @@ body {
     align-items: center;
     justify-content: space-around;
     background-color: white;
-    border-color: #708E8C;
-    border-style: solid ;
+    border: #708E8C solid 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    color:#708E8C;
+    font-weight:700;
 }
-
 
 .mascot {
     width: 225px;
