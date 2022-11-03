@@ -39,13 +39,13 @@ goal();
 
 function updateName(name) {
    let userName = document.querySelector('.username');
-   userName.innerText =  name
+   userName.innerText =  name;
 }
 // export {updateName}
 
 function updatePet(petType) {
    let pet = document.querySelector('.mascot');
-   pet.src = petType + '.svg'
+   pet.src = petType + '.svg';
 }
 
 function updateWater(current, goal) {
@@ -59,10 +59,10 @@ function updateWater(current, goal) {
    }
    // currentGoal.innerText = `${current}mL/\n${goal}mL`;
    currentGoal.innerText = `${current}mL/${goal}mL`;
-   let progress = Number(current) / Number(goal);
+   let progress = (Number(current) / Number(goal)) * 100;
    console.log(progress)
-   progressBar.value = progress * 100;
-   if (progress > 1) {
+   progressBar.value = progress;
+   if (progress > 100) {
       finishGoal();
    }
 }

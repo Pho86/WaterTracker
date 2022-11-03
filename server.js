@@ -48,15 +48,15 @@ app.post('/home', (req, res) => {
     // });
     console.log(req.body)
     if (req.body.goal) {
-        user.goal = req.body.goal
-        console.log(user)
+        user.goal = req.body.goal;
+        console.log(user);
     }
     if (req.body.drank) {
         if(user.drank === undefined) {
-            user.drank = req.body.drank
+            user.drank = req.body.drank;
         } else
-        user.drank = Number(user.drank) + Number(req.body.drank)
-        console.log(user)
+        user.drank = Number(user.drank) + Number(req.body.drank);
+        console.log(user);
     }
     res.sendFile(path.join(homepagePath));
 })
@@ -71,5 +71,5 @@ app.get("/data", (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`)
+    console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
 });

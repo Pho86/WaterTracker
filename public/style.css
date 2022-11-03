@@ -47,14 +47,14 @@ body {
     position: absolute;
     border-radius: 20px;
     background: linear-gradient(360deg, rgba(199, 243, 252, 0) 0%, rgba(95, 203, 223, 0.35) 100%);
-    height:80px;
-    width:690px;
+    height: 80px;
+    width: 690px;
     margin-top: -540px;
-    transition: all 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .progress_section {
-    display:flex;
+    display: flex;
     flex-direction: row;
     width: inherit;
     align-items: flex-start;
@@ -68,25 +68,26 @@ body {
     margin: 0;
 }
 
- .current_goal {
+.current_goal {
     align-self: flex-end;
     margin: 0px;
     align-items: baseline;
     margin-left: 30px;
- }
+}
 
- .name_label {
+.name_label {
     margin: 5px;
- }
- .history_label {
-    margin: 5px;
- }
+}
 
- .today_goal {
+.history_label {
+    margin: 5px;
+}
+
+.today_goal {
     align-self: flex-start;
- }
+}
 
- 
+
 /* Buttons */
 .add {
     width: 50px;
@@ -99,7 +100,7 @@ body {
     width: 225px;
     height: 225px;
     transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
-    margin:30px;
+    margin: 30px;
 }
 
 
@@ -134,15 +135,15 @@ body {
 .progress_bar::-webkit-progress-bar {
     background-color: #C7F3FC;
     border-radius: 20px;
-  }
+}
 
 
 .progress_bar::-webkit-progress-value {
     background-color: #5FCBDF;
     border-radius: 20px;
     transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
-  }
-  
+}
+
 
 
 .username {
@@ -165,12 +166,12 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: 'Varela Round', sans-serif;
     font-size: 16px;
+    appearance: none;
 }
 
 .history option {
     background-color: #5FCBDF;
     border-radius: 20px;
-    padding: 50px;
 }
 
 .goal_input {
