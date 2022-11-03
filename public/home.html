@@ -2,31 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WaterTracker</title>
-  <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaterTracker</title>
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <div class="main_container">
-    <div class="white_container">
-      <h1 class="header today_goal">Today's Goal</h1>
-      <p class="current_goal">1000ml</p>
-      <img class="mascot" src="monkee.png" />
-      <progress max="100" value="80" class="progress-bar">
-      </progress>
+    <div class="main_container">
+        <div class="white_container">
+            <h1 class="header today_goal">Today's Goal</h1>
+            <img class="mascot" src="monkee.png" />
 
-      <div class="bottom-section">
-        <div class="username">Slayerina</div>
-        <div class="history">history</div>
-        <img class='add' src="glasscup.svg" />
-      </div>
+            <div class='progress-section'>
+                <progress max="100" value="80" class="progress-bar">
+                </progress>
+                <p class="current_goal">1000ml</p>
+            </div>
+            <!-- 
+            <div class="labels">
+                <p class="name-label">Name</p>
+                <p class="history-label">History</p>
+            </div> -->
+
+            <div class="bottom-section">
+                <div class="name-cont">
+                    <h3 class="name-label">Name</h3>
+                    <div class="username">Slayerina</div>
+                </div>
+                <div class="history-cont">
+                    <h3 class="history-label">History</h3>
+                    <div class="history">history</div>
+                </div>
+                <img class='add' src="glasscup.svg" />
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
