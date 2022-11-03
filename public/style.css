@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 html {
     background-color: #8FE6F5;
 }
 
 body {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     font-family: 'Varela Round', sans-serif
-    
 }
 
 .white_container {
@@ -19,7 +19,7 @@ body {
     justify-content: space-evenly;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.3); 
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
     padding: 10px 20px 10px;
 }
 
@@ -32,17 +32,28 @@ body {
     align-items: center;
 }
 
-.bottom-section {
+
+.bottom_section {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     flex-direction: row;
     width: inherit;
-    height: 50px;
-
 }
 
-.progress-section {
+/* too lazy to think of a diff way to add gradient so wtv  */
+.goal_gradient {
+    opacity: 0;
+    position: absolute;
+    border-radius: 20px;
+    background: linear-gradient(360deg, rgba(199, 243, 252, 0) 0%, rgba(95, 203, 223, 0.35) 100%);
+    height:80px;
+    width:690px;
+    margin-top: -540px;
+    transition: all 1s ease-in-out;
+}
+
+.progress_section {
     display:flex;
     flex-direction: row;
     width: inherit;
@@ -51,10 +62,11 @@ body {
 
 /* Text */
 
-.goal-header {
+
+.goal_header {
     align-self: flex-start;
     margin: 0;
- }
+}
 
  .current_goal {
     align-self: flex-end;
@@ -63,10 +75,10 @@ body {
     margin-left: 30px;
  }
 
- .name-label {
+ .name_label {
     margin: 5px;
  }
- .history-label {
+ .history_label {
     margin: 5px;
  }
 
@@ -80,24 +92,38 @@ body {
     width: 50px;
     height: 50px;
     align-self: flex-end;
-    padding-right: 20px;
 }
+
 
 .mascot {
     width: 225px;
     height: 225px;
-    margin: 30px;
+    transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    margin:30px;
 }
 
-.mascot-select {
-    width: 150px;
-    height: 150px;
+
+.mascot_select {
+    width: 200px;
+    height: 200px;
     margin: 30px;
-    margin-top: 60px;
-    transition: all .3s ease-in-out;
+    /* margin-top: 60px; */
+    transition: all .45s ease-in-out;
 }
 
-.progress-bar {
+.mascot_select:hover {
+    transition: all .4s ease-in-out;
+    transform: scale(1.5);
+    filter: drop-shadow(2px 2px 8px #5FCBDF);
+}
+
+.mascot_select_button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.progress_bar {
     width: 530px;
     height: 20px;
     background-color: #5FCBDF;
@@ -105,51 +131,55 @@ body {
     border-radius: 20px;
 }
 
-.progress-bar::-webkit-progress-bar {
+.progress_bar::-webkit-progress-bar {
     background-color: #C7F3FC;
     border-radius: 20px;
   }
 
 
-.progress-bar::-webkit-progress-value {
+.progress_bar::-webkit-progress-value {
     background-color: #5FCBDF;
     border-radius: 20px;
+    transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
   }
   
 
 
-.mascot-select:hover {
-    transition: all .4s ease-in-out;
-    transform: scale(1.5);
-    filter: drop-shadow(2px 2px 8px #5FCBDF);
-}
-
-.mascot-select-button {
-    background: none;
-	border: none;
-	padding: 0;
-}
 .username {
     width: fit-content;
     background-color: #C7F3FC;
     padding: 10px;
     border-radius: 20px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
+
 
 .history {
     width: 300px;
     background-color: #C7F3FC;
     padding: 10px;
     border-radius: 20px;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
 }
 
-.goal-input {
+.history option {
+    background-color: #5FCBDF;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.goal_input {
     background-color: #E8E8E8;
     border-radius: 20px;
     height: 40px;
-    width:150px;
+    width: 150px;
 }
 
-.palCont{
+.pal_cont {
     padding: 5%;
 }

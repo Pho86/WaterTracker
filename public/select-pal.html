@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WaterTracker</title>
   <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
 <body>
@@ -17,31 +18,33 @@
         <!-- <img class="mascot-select" src="monkee.svg" /> -->
         <!-- <img class="mascot-select" src="otter.svg" /> -->
         <form action="/goal" method="post">
+          <button type="submit" src="/monkee.svg" name="pet" value="monkee" class="mascot_select_button">
+            <img class="mascot_select" src="monkee.svg" />
+            <button type="submit" src="/monkee.svg" name="pet" value="otter" class="mascot_select_button">
+              <img class="mascot_select" src="otter.svg" />
+              <!-- <input type="image" id="image" name="monkee" src="/monkee.svg" class="mascot-select" />
+              <input type="image" id="image" name="otter" src="/otter.svg" class="mascot-select" /> -->
           <!-- <input type="hidden" name="pet" /> -->
-          <button type="submit" src="/monkee.svg" name="pet" value="monkee" class="mascot-select-button">
-            <img class="mascot-select" src="monkee.svg" />
-          <button type="submit" src="/monkee.svg" name="pet" value="otter" class="mascot-select-button">
-            <img class="mascot-select" src="otter.svg" />
-              <!-- <input
-              type="image"
-              id="image"
-              name="monkee"
-              src="/monkee.svg"
-              class="mascot-select"
-            />
-            <input
-              type="image"
-              id="image"
-              name="otter"
-              src="/otter.svg"
-              class="mascot-select"
-              
-            /> -->
         </form>
       </div>
     </div>
   </div>
 </body>
-<script src="app.js"></script>
+<script type="module">
+  //i fix this later 
+  const name = () => {
+    
+    fetch('../data')
+      .then(res => res.json())
+      .then(function (user) {
+        let currentUser = user;
+        console.log(currentUser);
+        let userName = document.querySelector('.header');
+        console.log(userName)
+        userName.innerText = currentUser.name + ", Select a Pal"
+      })
+  }
+  name();
+</script>
 
 </html>

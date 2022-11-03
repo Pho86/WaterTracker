@@ -2,45 +2,57 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WaterTracker</title>
-    <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WaterTracker</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 
 <body>
-    <div class="main_container">
-        <div class="white_container">
-            <h1 class="header today_goal">Today's Goal</h1>
-            <img class="mascot" src="monkee.png" />
+  <div class="main_container">
+    <div class="white_container">
+      <div class="goal_gradient"></div>
+      <h1 class="header today_goal">Today's Goal</h1>
 
-            <div class='progress-section'>
-                <progress max="100" value="80" class="progress-bar">
-                </progress>
-                <p class="current_goal">1000ml</p>
-            </div>
-            <!-- 
-            <div class="labels">
-                <p class="name-label">Name</p>
-                <p class="history-label">History</p>
-            </div> -->
+      <img class="mascot" src="monkee.svg" />
+      <div class="progress_section">
+        <progress class="progress_bar" max="100" value="0">
+        </progress>
+        <p class="current_goal">0mL/1000mL</p>
+      </div>
 
-            <div class="bottom-section">
-                <div class="name-cont">
-                    <h3 class="name-label">Name</h3>
-                    <div class="username">Slayerina</div>
-                </div>
-                <div class="history-cont">
-                    <h3 class="history-label">History</h3>
-                    <div class="history">history</div>
-                </div>
-                <img class='add' src="glasscup.svg" />
-            </div>
+
+      <div class="bottom_section">
+
+        <div class="name_cont">
+          <h3 class="name_label">Name</h3>
+          <div class="username">Slayerina</div>
+      </div>
+
+        <div class="history_cont">
+          <h3 class="history_label">History</h3>
+          <select class="history">
+            <option>History Placeholder</option>
+          </select>
         </div>
+        <img class="add" src="glasscup.svg" />
+      </div>
     </div>
 
-    <script src="app.js"></script>
+
+    <form method="post" action="/home">
+      <button type="submit" name="drank" value=100>100mL</button>
+      <button type="submit" name="drank" value=250>250mL</button>
+      <button type="submit" name="drank" value=500>500mL</button>
+      <!-- <input type="number" name="drank" min="1" max="2000"> -->
+      <!-- <button type="submit">Confirm</button> -->
+    </form>
+  </div>
+
+
+  <script src="app.js"></script>
 </body>
 
 </html>

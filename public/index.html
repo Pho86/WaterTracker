@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WaterTracker</title>
     <link rel="stylesheet" href="./style.css">
-    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
 </head>
 
 <body>
@@ -15,11 +16,12 @@
         <div class="white_container">
             <h1 class="header">What is your name?</h1>
             <form action="/select-pal" method="post">
-                <input type="text" placeholder="NAME" name="name" maxlength="20" required>
+                <input type="text" placeholder="NAME" name="name" oninvalid="this.setCustomValidity('🤡🤡🤡')"  oninput="setCustomValidity('')" maxlength="20" required >
                 <button type="submit">Confirm</button>
                 
             </form>
-            <div class="palCont">
+
+            <div class="pal_cont">
                 <img class="mascot" src="/monkee.svg"/>
                 <img class="mascot" src="/otter.svg"/>
             </div>
