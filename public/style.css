@@ -206,5 +206,50 @@ body {
 }
 
 .pal_cont {
+    /* padding: 5%; */
+}
+
+.mainBtn{
+    width: 150px;
+    height: 50px;
+    background: #708E8C;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+    margin-top: 5%;
+    
+}
+
+.mainBtn:hover{
+    width: 150px;
+    height: 50px;
+    background: #2C6A66;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+    margin-top: 5%;
+}
+
+.mainForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameInput{
+    width: 300px;
+    background: #F1F1F1;
+    border-radius: 15px;
+    border: 0;
     padding: 5%;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
 }
