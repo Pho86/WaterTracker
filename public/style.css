@@ -60,6 +60,15 @@ body {
     align-items: flex-start;
 }
 
+
+.top-section  {
+    display: flex; 
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: inherit;
+}
+
 /* Text */
 
 
@@ -92,6 +101,22 @@ body {
     width: 50px;
     height: 50px;
     align-self: flex-end;
+}
+
+.next{
+    padding: 10px;
+}
+.new_goal {
+    width:200px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-color: #708E8C;
+    border-style: solid ;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 
