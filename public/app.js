@@ -39,7 +39,11 @@ goal();
 
 function updateName(name) {
    let userName = document.querySelector('.username');
+<<<<<<< HEAD
    userName.innerText = name
+=======
+   userName.innerText =  name
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 }
 // export {updateName}
 

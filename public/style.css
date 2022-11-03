@@ -1,13 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 html {
     background-color: #8FE6F5;
 }
 
 body {
+<<<<<<< HEAD
     padding: 0;
     margin: 0;
     font-family: 'Varela Round', sans-serif
+=======
+    padding:0;
+    margin:0;
+    font-family: 'Varela Round', sans-serif
+    
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 }
 
 .white_container {
@@ -16,10 +26,14 @@ body {
     height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: 20px;
+<<<<<<< HEAD
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+=======
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.3); 
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
     padding: 10px 20px 10px;
 }
 
@@ -32,12 +46,17 @@ body {
     align-items: center;
 }
 
+<<<<<<< HEAD
 .bottom_section {
+=======
+.bottom-section {
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     flex-direction: row;
     width: inherit;
+<<<<<<< HEAD
 }
 
 /* too lazy to think of a diff way to add gradient so wtv  */
@@ -50,10 +69,22 @@ body {
     width:690px;
     margin-top: -500px;
     transition: all 1s ease-in-out;
+=======
+    height: 50px;
+
+}
+
+.progress-section {
+    display:flex;
+    flex-direction: row;
+    width: inherit;
+    align-items: flex-start;
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 }
 
 /* Text */
 
+<<<<<<< HEAD
 .goal_header {
     align-self: flex-start;
     margin: 0;
@@ -61,11 +92,38 @@ body {
 
 
 
+=======
+.goal-header {
+    align-self: flex-start;
+    margin: 0;
+ }
+
+ .current_goal {
+    align-self: flex-end;
+    margin: 0px;
+    align-items: baseline;
+    margin-left: 30px;
+ }
+
+ .name-label {
+    margin: 5px;
+ }
+ .history-label {
+    margin: 5px;
+ }
+
+ .today_goal {
+    align-self: flex-start;
+ }
+
+ 
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 /* Buttons */
 .add {
     width: 50px;
     height: 50px;
     align-self: flex-end;
+<<<<<<< HEAD
 }
 
 .progress_bar {
@@ -84,23 +142,60 @@ body {
     background-color: #5FCBDF;
     border-radius: 5px;
     transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+=======
+    padding-right: 20px;
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 }
 
 .mascot {
     width: 225px;
     height: 225px;
+<<<<<<< HEAD
     transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
 }
 
 .mascot_select {
     width: 175px;
     height: 175px;
+=======
+    margin: 30px;
+}
+
+.mascot-select {
+    width: 150px;
+    height: 150px;
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
     margin: 30px;
     margin-top: 60px;
     transition: all .45s ease-in-out;
 }
 
+<<<<<<< HEAD
 .mascot_select:hover {
+=======
+.progress-bar {
+    width: 530px;
+    height: 20px;
+    background-color: #5FCBDF;
+    align-self: flex-start;
+    border-radius: 20px;
+}
+
+.progress-bar::-webkit-progress-bar {
+    background-color: #C7F3FC;
+    border-radius: 20px;
+  }
+
+
+.progress-bar::-webkit-progress-value {
+    background-color: #5FCBDF;
+    border-radius: 20px;
+  }
+  
+
+
+.mascot-select:hover {
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
     transition: all .4s ease-in-out;
     transform: scale(1.5);
     filter: drop-shadow(2px 2px 8px #5FCBDF);
@@ -111,6 +206,7 @@ body {
     border: none;
     padding: 0;
 }
+<<<<<<< HEAD
 
 .username {
     width: 30%;
@@ -119,12 +215,20 @@ body {
     border-radius: 10px;
     margin-top: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+=======
+.username {
+    width: fit-content;
+    background-color: #C7F3FC;
+    padding: 10px;
+    border-radius: 20px;
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
 }
 
 .history {
     width: 300px;
     background-color: #C7F3FC;
     padding: 10px;
+<<<<<<< HEAD
     border-radius: 10px;
     border: none;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -146,5 +250,18 @@ body {
 }
 
 .pal_cont {
+=======
+    border-radius: 20px;
+}
+
+.goal-input {
+    background-color: #E8E8E8;
+    border-radius: 20px;
+    height: 40px;
+    width:150px;
+}
+
+.palCont{
+>>>>>>> 0f3606b134e0016f3b361f97095441707f7aea2e
     padding: 5%;
 }
