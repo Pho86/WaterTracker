@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
 html {
     background-color: #8FE6F5;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif
 }
 
 .white_container {
@@ -8,10 +16,11 @@ html {
     height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.3); 
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px 10px;
 }
 
 .main_container {
@@ -23,37 +32,154 @@ html {
     align-items: center;
 }
 
-.add_button {
-    border-radius: 100%;
-    background-color: #5FCBDF;
-    height: 70px;
-    width: 70px;
-    box-shadow: 0px 2px 5px rgba(0,0,0,0.2); 
+
+.bottom_section {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
+    width: inherit;
 }
 
+/* too lazy to think of a diff way to add gradient so wtv  */
+.goal_gradient {
+    opacity: 0;
+    position: absolute;
+    border-radius: 20px;
+    background: linear-gradient(360deg, rgba(199, 243, 252, 0) 0%, rgba(95, 203, 223, 0.35) 100%);
+    height:80px;
+    width:690px;
+    margin-top: -540px;
+    transition: all 1s ease-in-out;
+}
+
+.progress_section {
+    display:flex;
+    flex-direction: row;
+    width: inherit;
+    align-items: flex-start;
+}
+
+/* Text */
+
+
+.goal_header {
+    align-self: flex-start;
+    margin: 0;
+}
+
+ .current_goal {
+    align-self: flex-end;
+    margin: 0px;
+    align-items: baseline;
+    margin-left: 30px;
+ }
+
+ .name_label {
+    margin: 5px;
+ }
+ .history_label {
+    margin: 5px;
+ }
+
+ .today_goal {
+    align-self: flex-start;
+ }
+
+ 
+/* Buttons */
 .add {
     width: 50px;
     height: 50px;
+    align-self: flex-end;
 }
+
 
 .mascot {
-    width: 300px;
-    height: 300px;
-}
-
-.mascot-select {
-    width: 150px;
-    height: 150px;
+    width: 225px;
+    height: 225px;
+    transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     margin:30px;
-    margin-top: 60px;
-    
 }
 
-.mascot-select:hover {
-    transition: all .1s ease-in-out;
+
+.mascot_select {
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+    /* margin-top: 60px; */
+    transition: all .45s ease-in-out;
+}
+
+.mascot_select:hover {
+    transition: all .4s ease-in-out;
     transform: scale(1.5);
     filter: drop-shadow(2px 2px 8px #5FCBDF);
+}
+
+.mascot_select_button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.progress_bar {
+    width: 530px;
+    height: 20px;
+    background-color: #5FCBDF;
+    align-self: flex-start;
+    border-radius: 20px;
+}
+
+.progress_bar::-webkit-progress-bar {
+    background-color: #C7F3FC;
+    border-radius: 20px;
+  }
+
+
+.progress_bar::-webkit-progress-value {
+    background-color: #5FCBDF;
+    border-radius: 20px;
+    transition: all 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+  }
+  
+
+
+.username {
+    width: fit-content;
+    background-color: #C7F3FC;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+
+.history {
+    width: 300px;
+    background-color: #C7F3FC;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
+}
+
+.history option {
+    background-color: #5FCBDF;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.goal_input {
+    background-color: #E8E8E8;
+    border-radius: 20px;
+    height: 40px;
+    width: 150px;
+}
+
+.pal_cont {
+    padding: 5%;
 }
