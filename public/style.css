@@ -7,7 +7,7 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Varela Round', sans-serif
+    font-family: 'Varela Round', sans-serif;
 }
 
 .white_container {
@@ -60,6 +60,15 @@ body {
     align-items: flex-start;
 }
 
+
+.top-section  {
+    display: flex; 
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: inherit;
+}
+
 /* Text */
 
 
@@ -92,6 +101,22 @@ body {
     width: 50px;
     height: 50px;
     align-self: flex-end;
+}
+
+.next{
+    padding: 10px;
+}
+.new_goal {
+    width:200px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    border-color: #708E8C;
+    border-style: solid ;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -181,6 +206,49 @@ body {
 }
 
 .pal_cont {
+    /* padding: 5%; */
+}
+
+.mainBtn{
+    width: 150px;
+    height: 50px;
+    background: #708E8C;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+    margin-top: 5%;
+    
+}
+
+.mainBtn:hover{
+    width: 150px;
+    height: 50px;
+    background: #2C6A66;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+    margin-top: 5%;
+}
+
+.mainForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameInput{
+    width: 300px;
+    background: #F1F1F1;
+    border-radius: 15px;
+    border: 0;
     padding: 5%;
 }
 
@@ -254,6 +322,7 @@ body {
     animation-duration: 8s;
     opacity: 0.5;
   }
+  
    .four {
     width: 60px;
     height: 60px;
@@ -322,7 +391,7 @@ body {
   
     animation-duration: 12s;
     left: 450px;
-   
+ 
   }
   
   #logo {
@@ -332,5 +401,3 @@ body {
     left: 450px;
   }
   
-  
- 
