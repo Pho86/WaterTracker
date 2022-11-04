@@ -42,12 +42,16 @@ body {
 }
 .mascot_div {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width:inherit;
 }
+
 .mascot_text {
     position: absolute;
-    align-self: center;
-    justify-self: end;
+    /* align-self: center; */
+    margin-left: 400px;
+    /* margin-bottom: 150px; */
+    font-size: 24px;
 }
 
 /* too lazy to think of a diff way to add gradient so wtv  */

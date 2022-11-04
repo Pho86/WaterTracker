@@ -14,8 +14,13 @@
 //       })
 // }
 
+
 // goal();
 
+// axios.get('/data')
+// .then (function(res){
+//    console.log(res)
+// })
 
 // fetch data with async and await function
 const goal = async () => {
@@ -51,6 +56,8 @@ function updatePet(petType) {
    pet.src = petType + '.svg';
 }
 
+
+
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
    let progressBar = document.querySelector('.progress_bar');
@@ -60,10 +67,11 @@ function updateWater(current, goal) {
    if (goal == undefined) {
       goal = 1;
    }
+   
    // currentGoal.innerText = `${current}mL/\n${goal}mL`;
    currentGoal.innerText = `${current}mL/${goal}mL`;
    let progress = (Number(current) / Number(goal)) * 100;
-   console.log(progress)
+   console.log(progress);
    progressBar.value = progress;
    if (progress > 100) {
       finishGoal();

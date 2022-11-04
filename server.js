@@ -31,14 +31,16 @@ app.post('/select-pal', (req, res) => {
     if (req.body) {
         user = req.body;
     }
-    db.run("INSERT INTO users (name) values (?)", [user.name]);
-    db.each("SELECT * FROM users", (err, row) => {
-        console.log(row);
-    });
+    // db.run("INSERT INTO users (name) values (?)", [user.name]);
+    // const x = db.run("SELECT * FROM users");
+    // console.log(x)
+    // db.each("SELECT * FROM users WHERE " , (err, row) => {
+    //     console.log(row)
+    // });
 
     // console.log(req.body);
     
-    console.log(user)
+    // console.log(user)
     res.sendFile(path.join(petpagePath));
 })
 
