@@ -40,10 +40,11 @@ body {
     flex-direction: row;
     width: inherit;
 }
+
 .mascot_div {
     display: flex;
     justify-content: center;
-    width:inherit;
+    width: inherit;
 }
 
 .mascot_text {
@@ -64,7 +65,7 @@ body {
     width: 690px;
     margin-top: -540px;
     transition: opacity 1s ease-in-out;
-    pointer-events:none;
+    pointer-events: none;
 }
 
 .progress_section {
@@ -75,8 +76,8 @@ body {
 }
 
 
-.top-section  {
-    display: flex; 
+.top-section {
+    display: flex;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
@@ -119,12 +120,12 @@ body {
     align-self: flex-end;
 }
 
-.next{
+.next {
     padding: 10px;
 }
 
 .new_goal {
-    width:200px;
+    width: 200px;
     height: 40px;
     border-radius: 20px;
     display: flex;
@@ -134,9 +135,9 @@ body {
     border: #708E8C solid 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     /* z-index: 100; */
-    color:#708E8C;
-    font-weight:700;
-    font-size:16px;
+    color: #708E8C;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 .mascot {
@@ -225,15 +226,16 @@ body {
 }
 
 .new_user {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    gap:8px;
+    gap: 8px;
 }
+
 .pal_cont {
     /* padding: 5%; */
 }
 
-.mainBtn{
+.mainBtn {
     width: 150px;
     height: 50px;
     background: #708E8C;
@@ -244,16 +246,16 @@ body {
     font-family: 'Varela Round', sans-serif;
     color: #ffff;
     margin-top: 5%;
-    transition:all .2s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
-.mainBtn:hover{
+.mainBtn:hover {
     background: #2C6A66;
-    transition:all .25s ease-in-out;
+    transition: all .25s ease-in-out;
     /* transform: scale(1.1); */
 }
 
-.mainForm{
+.mainForm {
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -261,7 +263,7 @@ body {
     align-items: center;
 }
 
-.nameInput{
+.nameInput {
     width: 300px;
     background: #F1F1F1;
     border-radius: 15px;
@@ -270,3 +272,165 @@ body {
     font-family: 'Varela Round', sans-serif;
     font-size: 16px;
 }
+
+
+
+/* Splash Screen Animation */
+.ocean {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(0deg, #183f53, #5FCBDF)
+}
+
+.bubble {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position: absolute;
+    background-color: white;
+    bottom: -70px;
+    opacity: 0.2;
+    animation: bubble 15s ease-in-out infinite,
+        sideWays 5s ease-in-out infinite alternate;
+}
+
+@keyframes bubble {
+    0% {
+        transform: translateY(0%);
+        opacity: 0.06;
+    }
+
+    100% {
+        transform: translateY(-120vh);
+    }
+}
+
+@keyframes sideWays {
+    0% {
+        margin-left: 0px;
+    }
+
+    100% {
+        margin-left: 300px;
+    }
+}
+
+@keyframes sideWaysRight {
+    0% {
+        margin-right: 0px;
+    }
+
+    100% {
+        margin-right: 300px;
+    }
+}
+
+.one {
+    width: 50px;
+    height: 50px;
+    animation-delay: 3s;
+    animation-duration: 8s;
+    opacity: 0.2;
+}
+
+.two {
+    width: 60px;
+    height: 60px;
+    bottom: -60px;
+    left: 40%;
+    animation-delay: 1s;
+    animation-duration: 9s;
+    opacity: 0.5;
+}
+
+.three {
+    width: 40px;
+    height: 40px;
+    left: 70%;
+    animation-delay: 1s;
+    animation-duration: 8s;
+    opacity: 0.5;
+}
+
+.four {
+    width: 60px;
+    height: 60px;
+    left: 30%;
+    animation-delay: 4s;
+    animation-duration: 6s;
+    opacity: 0.5;
+}
+
+.five {
+    width: 30px;
+    height: 30px;
+    left: 60%;
+    animation-delay: 4s;
+    animation-duration: 7s;
+    opacity: 0.8;
+}
+
+.six {
+    width: 70px;
+    height: 70px;
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 9s;
+    opacity: 0.8;
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-120vh);
+    }
+}
+
+@keyframes logoMove {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50vh);
+    }
+}
+
+
+.hello {
+    position: absolute;
+    bottom: -40px;
+    animation: mover 15s normal forwards ease-in-out
+}
+
+.logo1 {
+    position: absolute;
+    bottom: -40px;
+    animation: logoMove 10s normal forwards ease-in-out
+}
+
+#mascotSplash {
+    width: 250px;
+    height: 250px;
+    animation-duration: 12s;
+    left: 600px;
+}
+
+#mascotSplash2 {
+    width: 250px;
+    height: 250px;
+    animation-duration: 12s;
+    left: 450px;
+}
+
+#logo {
+    width: 400px;
+    animation-delay: 1s;
+    animation-duration: 7s;
+    left: 450px;
+}
+
+
