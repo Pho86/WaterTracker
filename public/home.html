@@ -15,15 +15,22 @@
     <div class="white_container">
       <div class="goal_gradient"></div>
 
-     <div class="top-section">
-      <h1 class="header today_goal">Today's Goal</h1>
-      <form method="post" action="/goal" >
-        <button class="new_goal">Start a New Goal<img class='next' src='/next.svg'></button>
-        <button class="new_goal">Create a New User<img class='next' src='/next.svg'></button>
-      </form>
-    </div>
+      <div class="top-section">
+        <h1 class="header today_goal">Today's Goal</h1>
+        <div class="new_user">
+          <form method="post" action="/goal" class="new_user">
+            <button class="new_goal" name="reset" value="yes">Start new goal<img class="next" src="/next.svg"></button>
+          </form>
+          <form method="post" action="/" class="new_user">
+            <button class="new_goal">Create new user<img class="next" src="/next.svg"></button>
+          </form>
+        </div>
+      </div>
 
-      <img class="mascot" src="monkee.svg" />
+      <div class="mascot_div">
+        <img class="mascot" src="monkee.svg" />
+        <p class="mascot_text">HELLO WORLD</p>
+      </div>
 
       <div class="progress_section">
         <progress class="progress_bar" max="100" value="0">

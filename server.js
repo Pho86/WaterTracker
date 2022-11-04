@@ -3,7 +3,6 @@ const path = require('path');
 const db = require('./create-tables');
 const app = express();
 const port = 3000;
-// app.use(express.favicon(__dirname + '/public/favicon.ico')); 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,19 +22,37 @@ app.get('/', (req, res) => {
 })
 var user = {};
 
+app.post('/', (req,res) => {
+    user = {}
+    res.sendFile(path.join(namepagePath));
+})
+
 app.post('/select-pal', (req, res) => {
-    // console.log(req.body);
     if (req.body) {
         user = req.body;
     }
-    // db.run("INSERT INTO users (name) values (?)", [user.name]);
+    db.run("INSERT INTO users (name) values (?)", [user.name]);
+    db.each("SELECT * FROM users", (err, row) => {
+        console.log(row);
+    });
+
+    // console.log(req.body);
+    
     console.log(user)
     res.sendFile(path.join(petpagePath));
 })
 
 app.post('/goal', (req, res) => {
+
+    db.each("SELECT * FROM users", (err, row) => {
+        console.log(row);
+    });
+
     if (req.body.pet) {
         user.pet = req.body.pet;
+    }
+    if (req.body.reset) {
+        user.drank = 0;
     }
     // db.run("INSERT INTO users (petType) values (?)", [user.pet]);
     console.log(user);
@@ -43,9 +60,11 @@ app.post('/goal', (req, res) => {
 })
 
 app.post('/home', (req, res) => {
-    // db.each("SELECT * FROM users", (err, row) => {
-    //     console.log(row);
-    // });
+
+    db.each("SELECT * FROM users", (err, row) => {
+        console.log(row);
+    });
+
     console.log(req.body)
     if (req.body.goal) {
         user.goal = req.body.goal;
@@ -57,6 +76,7 @@ app.post('/home', (req, res) => {
         } else
         user.drank = Number(user.drank) + Number(req.body.drank);
         console.log(user);
+        // res.render('/home.html')
     }
     res.sendFile(path.join(homepagePath));
 })

@@ -26,6 +26,9 @@ const goal = async () => {
       console.log(currentUser);
       updateName(currentUser.name);
       updatePet(currentUser.pet);
+      if(currentUser.pet === "otter") {
+         document.querySelector("link[rel*='icon']").href = "favicon1.ico";
+      }
       updateWater(currentUser.drank, currentUser.goal);
       // using test array right now change later 🙈
       updateHistory(testhistory)

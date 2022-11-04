@@ -40,6 +40,15 @@ body {
     flex-direction: row;
     width: inherit;
 }
+.mascot_div {
+    display: flex;
+    justify-content: flex-end;
+}
+.mascot_text {
+    position: absolute;
+    align-self: center;
+    justify-self: end;
+}
 
 /* too lazy to think of a diff way to add gradient so wtv  */
 .goal_gradient {
@@ -51,6 +60,7 @@ body {
     width: 690px;
     margin-top: -540px;
     transition: opacity 1s ease-in-out;
+    pointer-events:none;
 }
 
 .progress_section {
@@ -67,6 +77,7 @@ body {
     flex-direction: row;
     align-items: center;
     width: inherit;
+    z-index: 100;
 }
 
 /* Text */
@@ -118,9 +129,10 @@ body {
     background-color: white;
     border: #708E8C solid 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 100;
+    /* z-index: 100; */
     color:#708E8C;
     font-weight:700;
+    font-size:16px;
 }
 
 .mascot {
@@ -208,6 +220,49 @@ body {
     width: 150px;
 }
 
+.new_user {
+    display:flex;
+    flex-direction: column;
+    gap:8px;
+}
 .pal_cont {
+    /* padding: 5%; */
+}
+
+.mainBtn{
+    width: 150px;
+    height: 50px;
+    background: #708E8C;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Varela Round', sans-serif;
+    color: #ffff;
+    margin-top: 5%;
+    transition:all .2s ease-in-out;
+}
+
+.mainBtn:hover{
+    background: #2C6A66;
+    transition:all .25s ease-in-out;
+    /* transform: scale(1.1); */
+}
+
+.mainForm{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.nameInput{
+    width: 300px;
+    background: #F1F1F1;
+    border-radius: 15px;
+    border: 0;
     padding: 5%;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 16px;
 }
