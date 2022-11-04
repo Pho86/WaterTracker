@@ -73,10 +73,10 @@ function updateWater(current, goal) {
    let progress = (Number(current) / Number(goal)) * 100;
    console.log(progress);
    progressBar.value = progress;
-   if (progress < 25) {
+   if (progress < 33) {
       updateBubble("sad");
    }
-   else if (progress > 75) {
+   else if (progress > 67) {
       updateBubble("happy");
       if (progress > 100) {
          finishGoal();
@@ -132,5 +132,7 @@ let currentUser = {};
 let mascotText = {
    happy: ["you're doing great", "good job", "👏",],
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
-   sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "shibar", "drink water please", "me thirsty", "💀", "du ma"]
+   sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma"]
 }
+// "shibar", "du ma"
+

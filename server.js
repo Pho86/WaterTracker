@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const namepagePath = __dirname + '/public/index.html'
+const splashpagePath = __dirname + '/public/splash.html'
 const petpagePath = __dirname + '/public/select-pal.html'
 const goalpagePath = __dirname + '/public/goal.html'
 const homepagePath = __dirname + '/public/home.html'
@@ -18,7 +19,7 @@ const homepagePath = __dirname + '/public/home.html'
 
 app.get('/', (req, res) => {
     console.log(user)
-    res.sendFile(path.join(namepagePath));
+    res.sendFile(path.join(splashpagePath));
 })
 var user = {};
 
@@ -31,7 +32,14 @@ app.post('/select-pal', (req, res) => {
     if (req.body) {
         user = req.body;
     }
-    // db.run("INSERT INTO users (name) values (?)", [user.name]);
+    db.run("INSERT INTO users (name) values (?)", [user.name]);
+    db.each("SELECT * FROM users", (err, row) => {
+        if(row.name === user.name) {
+            console.log(row.name)
+        }
+    })
+    // let x = db.run("SELECT * FROM users")
+    // console.log(x)
     // const x = db.run("SELECT * FROM users");
     // console.log(x)
     // db.each("SELECT * FROM users WHERE " , (err, row) => {
@@ -64,7 +72,7 @@ app.post('/goal', (req, res) => {
 app.post('/home', (req, res) => {
 
     db.each("SELECT * FROM users", (err, row) => {
-        console.log(row);
+        console.log(row.name);
     });
 
     console.log(req.body)
@@ -72,6 +80,7 @@ app.post('/home', (req, res) => {
         user.goal = req.body.goal;
         console.log(user);
     }
+    
     if (req.body.drank) {
         if(user.drank === undefined) {
             user.drank = req.body.drank;
