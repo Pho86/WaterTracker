@@ -31,7 +31,7 @@ const goal = async () => {
       console.log(currentUser);
       updateName(currentUser.name);
       updatePet(currentUser.pet);
-      if(currentUser.pet === "otter") {
+      if (currentUser.pet === "otter") {
          document.querySelector("link[rel*='icon']").href = "favicon1.ico";
       }
       updateWater(currentUser.drank, currentUser.goal);
@@ -47,7 +47,7 @@ goal();
 
 function updateName(name) {
    let userName = document.querySelector('.username');
-   userName.innerText =  name;
+   userName.innerText = name;
 }
 // export {updateName}
 
@@ -67,14 +67,23 @@ function updateWater(current, goal) {
    if (goal == undefined) {
       goal = 1;
    }
-   
+
    // currentGoal.innerText = `${current}mL/\n${goal}mL`;
    currentGoal.innerText = `${current}mL/${goal}mL`;
    let progress = (Number(current) / Number(goal)) * 100;
    console.log(progress);
    progressBar.value = progress;
-   if (progress > 100) {
-      finishGoal();
+   if (progress < 25) {
+      updateBubble("sad");
+   }
+   else if (progress > 75) {
+      updateBubble("happy");
+      if (progress > 100) {
+         finishGoal();
+      }
+   }
+   else {
+      updateBubble("neutral");
    }
 }
 
@@ -85,6 +94,23 @@ function finishGoal() {
    todaysGoalHeading.innerText = "Goal Reached!";
 }
 
+
+function updateBubble(mood) {
+   let bubbleText = document.querySelector('.mascot_text')
+   if (mood === "happy") {
+      console.log(mascotText.happy)
+      bubbleText.innerText = mascotText.happy[(Math.floor(Math.random() * (mascotText.happy.length - 0)))]
+   }
+   if (mood === "neutral") {
+      console.log(mascotText.neutral)
+      bubbleText.innerText = mascotText.neutral[(Math.floor(Math.random() * (mascotText.neutral.length - 0)))]
+   }
+   if (mood === "sad") {
+      console.log(mascotText.sad)
+      bubbleText.innerText = mascotText.sad[(Math.floor(Math.random() * (mascotText.sad.length - 0)))]
+   }
+}
+
 let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4 150 mL"];
 
 // idk how to do this but ok
@@ -92,7 +118,7 @@ function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";
    console.log(historySelect)
-   for (let i = 0; i < history.length ; i++) {
+   for (let i = 0; i < history.length; i++) {
       historyItem = history[i];
       console.log(historyItem)
       let option = document.createElement("option");
@@ -103,3 +129,8 @@ function updateHistory(history) {
 
 let currentUser = {};
 
+let mascotText = {
+   happy: ["you're doing great", "good job", "👏",],
+   neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
+   sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "shibar", "drink water please", "me thirsty", "💀", "du ma"]
+}

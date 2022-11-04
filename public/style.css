@@ -7,7 +7,7 @@ html {
 body {
     padding: 0;
     margin: 0;
-    font-family: 'Varela Round', sans-serif
+    font-family: 'Varela Round', sans-serif;
 }
 
 .white_container {
@@ -44,15 +44,15 @@ body {
 .mascot_div {
     display: flex;
     justify-content: center;
-    width: inherit;
+    /* width: inherit; */
 }
 
 .mascot_text {
     position: absolute;
-    /* align-self: center; */
-    margin-left: 400px;
-    /* margin-bottom: 150px; */
-    font-size: 24px;
+    align-self: center;
+    margin-left: 420px;
+    margin-bottom: 200px;
+    font-size: 20px;
 }
 
 /* too lazy to think of a diff way to add gradient so wtv  */
@@ -353,6 +353,7 @@ body {
 }
 
 .four {
+
     width: 60px;
     height: 60px;
     left: 30%;
@@ -432,5 +433,3 @@ body {
     animation-duration: 7s;
     left: 450px;
 }
-
-
