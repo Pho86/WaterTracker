@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 html {
-    background-color: #8FE6F5;
+    /* background-color: #8FE6F5; */
+    background: linear-gradient(0deg, rgba(124,206,221,1) 0%, rgba(143,230,245,1) 60%, rgba(178,234,244,1) 100%);
 }
 
 body {
@@ -12,6 +13,7 @@ body {
 
 .white_container {
     background-color: white;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 50%, rgba(213,248,255,1) 100%);
     width: 650px;
     height: 600px;
     display: flex;
@@ -103,6 +105,22 @@ body {
     align-self: flex-end;
 }
 
+.add:hover {
+    filter: drop-shadow(2px 2px 4px #5FCBDF);
+    animation: shake 2s;
+    animation-iteration-count: 1;
+}
+    @keyframes shake{
+        0% { transform: translateX(0) }
+        25% { transform: translateY(-9px) }
+        35% { transform: translateY(-9px) rotate(17deg) }
+        55% { transform: translateY(-9px) rotate(-17deg) }
+        65% { transform: translateY(-9px) rotate(17deg) }
+        75% { transform: translateY(-9px) rotate(-17deg) }
+        100% { transform: translateY(-9) rotate(0) }
+}
+
+
 .next{
     padding: 10px;
 }
@@ -117,6 +135,10 @@ body {
     border-color: #708E8C;
     border-style: solid ;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.new_goal:hover {
+    box-shadow: 0px 2px 5px rgba(0, 238, 255, 0.3);
 }
 
 
@@ -190,6 +212,10 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: 'Varela Round', sans-serif;
     font-size: 16px;
+}
+
+.history:hover {
+    filter: drop-shadow(2px 2px 4px #5FCBDF);
 }
 
 .history option {
