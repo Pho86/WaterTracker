@@ -129,6 +129,7 @@ function updateHistory(history) {
 
 let currentUser = {};
 
+// if i see slay im checking the commits and banning you
 let mascotText = {
    happy: ["you're doing great", "good job", "👏",],
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],

@@ -11,23 +11,47 @@
 
 </head>
 
-<body>
-    <div class="main_container">
-        <div class="white_container">
-            <h1 class="header">What is your name?</h1>
-            <form class="mainForm" action="/select-pal" method="post">
-                <input class="nameInput" type="text" placeholder="NAME" name="name" oninvalid="this.setCustomValidity('🤡🤡🤡')"  oninput="setCustomValidity('')" maxlength="20" required >
-                <button class="mainBtn" type="submit">Confirm</button>
-                
-            </form>
-
-            <div class="pal_cont">
-                <img class="mascot" src="/monkee.svg"/>
-                <img class="mascot" src="/otter.svg"/>
-            </div>
+<body style="overflow: hidden;">
+    <div>
+        <div class="ocean">
+            <img class="hello " id="mascotSplash" src="monkee.svg"></img>
+            <img class="hello " id="mascotSplash2" src="otter.svg"></img>
+            <img class="logo1 " id="logo" src="logo.png"></img>
+            <div class="bubble one"></div>
+            <div class="bubble two"></div>
+            <div class="bubble three"></div>
+            <div class="bubble four"></div>
+            <div class="bubble five"></div>
+            <div class="bubble six"></div>
         </div>
         
+        <div class="main_container">
+            <div class="white_container">
+                <h1 class="header">What is your name?</h1>
+                <form class="mainForm" action="/select" method="post" >
+                    <input class="nameInput" type="text" placeholder="NAME" name="name"
+                        oninvalid="this.setCustomValidity('🤡🤡🤡')" oninput="setCustomValidity('')" maxlength="20"
+                        required>
+                    <button class="mainBtn" type="submit">Confirm</button>
+
+                </form>
+
+                <div class="pal_cont">
+                    <img class="mascot" src="/monkee.svg" />
+                    <img class="mascot" src="/otter.svg" />
+                </div>
+            </div>
+
+        </div>
     </div>
+    <script>
+        let test = document.querySelector('.ocean');
+        setTimeout(() => {
+            test.style.display = "none"
+        }, "500");
+        // }, "9500");
+    </script>
 </body>
+
 
 </html>
