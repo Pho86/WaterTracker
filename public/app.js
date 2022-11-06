@@ -14,13 +14,9 @@
 //       })
 // }
 
-
 // goal();
 
-// axios.get('/data')
-// .then (function(res){
-//    console.log(res)
-// })
+
 
 // fetch data with async and await function
 const goal = async () => {
@@ -30,11 +26,9 @@ const goal = async () => {
       const currentUser = await data.json();
       console.log(currentUser);
       updateName(currentUser.name);
-      updatePet(currentUser.pet);
-      if (currentUser.pet === "otter") {
-         document.querySelector("link[rel*='icon']").href = "favicon1.ico";
-      }
-      updateWater(currentUser.drank, currentUser.goal);
+      updatePet(currentUser.pet_type);
+      updateFavicon(currentUser.pet_type)
+      updateWater(currentUser.water_drank, currentUser.water_goal);
       // using test array right now change later 🙈
       updateHistory(testhistory)
    }
@@ -45,18 +39,64 @@ const goal = async () => {
 
 goal();
 
+// document.querySelector('.test').addEventListener('click', (event) => {
+//    if(event.target.closest(".water_drank")) {
+//       event.preventDefault();
+//       let value = event.target.value
+   
+//       console.log(value)
+//       axios.post("/data", {
+//          water_drank: value
+//       })
+//        .then(function (response) {
+//          console.log(response.data)
+//          goal();
+//        })
+//        .catch(function (error) {
+//          console.log(error)
+//        })
+//    }
+// })
+
+let water_inputs = document.querySelectorAll('.water_send')
+for(let i = 0; i < water_inputs.length; i++) {
+   water_inputs[i].addEventListener("click", (event)=>{
+      event.preventDefault();
+      let value = event.target.value
+      console.log(value)
+      axios.post("/data", {
+         water_drank: value
+      })
+       .then(function (response) {
+         console.log(response.data)
+         goal();
+       })
+       .catch(function (error) {
+         console.log(error)
+       })
+   })
+}
+
+
 function updateName(name) {
    let userName = document.querySelector('.username');
    userName.innerText = name;
 }
-// export {updateName}
+
 
 function updatePet(petType) {
    let pet = document.querySelector('.mascot');
    pet.src = petType + '.svg';
 }
 
-
+function updateFavicon(pet_type) {
+   if (pet_type === "monkee") {
+      document.querySelector("link[rel*='icon']").href = "favicon.ico";
+   }
+   if (pet_type === "otter") {
+      document.querySelector("link[rel*='icon']").href = "favicon1.ico";
+   }
+}
 
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
@@ -67,11 +107,10 @@ function updateWater(current, goal) {
    if (goal == undefined) {
       goal = 1;
    }
-
    // currentGoal.innerText = `${current}mL/\n${goal}mL`;
    currentGoal.innerText = `${current}mL/${goal}mL`;
    let progress = (Number(current) / Number(goal)) * 100;
-   console.log(progress);
+   console.log("current % is " + progress);
    progressBar.value = progress;
    if (progress < 33) {
       updateBubble("sad");
@@ -96,28 +135,31 @@ function finishGoal() {
 
 
 function updateBubble(mood) {
-   let bubbleText = document.querySelector('.mascot_text')
+   let bubbleText = document.querySelector('.mascot_text');
+   bubbleText.style.transform = "scale(1.5)";
    if (mood === "happy") {
-      console.log(mascotText.happy)
-      bubbleText.innerText = mascotText.happy[(Math.floor(Math.random() * (mascotText.happy.length - 0)))]
+      console.log(mascotText.happy);
+      bubbleText.innerText = mascotText.happy[(Math.floor(Math.random() * (mascotText.happy.length - 0)))];
    }
    if (mood === "neutral") {
-      console.log(mascotText.neutral)
+      console.log(mascotText.neutral);
       bubbleText.innerText = mascotText.neutral[(Math.floor(Math.random() * (mascotText.neutral.length - 0)))]
    }
    if (mood === "sad") {
-      console.log(mascotText.sad)
+      console.log(mascotText.sad);
       bubbleText.innerText = mascotText.sad[(Math.floor(Math.random() * (mascotText.sad.length - 0)))]
    }
+   setTimeout(() => {
+      bubbleText.style.transform = "scale(1)";
+  }, "1000");
 }
 
-let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4 150 mL"];
+let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4: 100 mL"];
 
-// idk how to do this but ok
+// not saving each water input separately as of right now so can't have this functioning
 function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";
-   console.log(historySelect)
    for (let i = 0; i < history.length; i++) {
       historyItem = history[i];
       console.log(historyItem)
@@ -129,11 +171,11 @@ function updateHistory(history) {
 
 let currentUser = {};
 
-// if i see slay im checking the commits and banning you
+// if i see slay im checking the commits and banning you 🤗
 let mascotText = {
    happy: ["you're doing great", "good job", "👏",],
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
    sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma"]
 }
-// "shibar", "du ma"
+
 

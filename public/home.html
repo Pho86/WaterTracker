@@ -8,7 +8,7 @@
   <title>WaterTracker</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 
       <div class="mascot_div">
         <img class="mascot" src="monkee.svg" />
-        <p class="mascot_text">you smell</p>
+        <p class="mascot_text">please go back home</p>
       </div>
 
       <div class="progress_section">
@@ -44,7 +44,7 @@
 
         <div class="name_cont">
           <h3 class="name_label">Name</h3>
-          <div class="username">Slayerina</div>
+          <div class="username">Slayerina (NO ACCOUNT)</div>
         </div>
 
         <div class="history_cont">
@@ -58,10 +58,10 @@
     </div>
 
 
-    <form method="post" action="/home">
-      <button type="submit" name="drank" value=100>100mL</button>
-      <button type="submit" name="drank" value=250>250mL</button>
-      <button type="submit" name="drank" value=500>500mL</button>
+    <form method="post" action="/home" class="test">
+      <button class="water_send" type="submit" name="drank" value=100>100mL</button>
+      <button class="water_send" type="submit" name="drank" value=250>250mL</button>
+      <button class="water_send" type="submit" name="drank" value=500>500mL</button>
       <!-- <input type="number" name="drank" min="1" max="2000"> -->
       <!-- <button type="submit">Confirm</button> -->
     </form>

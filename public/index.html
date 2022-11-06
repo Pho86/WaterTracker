@@ -8,7 +8,7 @@
     <title>WaterTracker</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body style="overflow: hidden;">
@@ -24,11 +24,11 @@
             <div class="bubble five"></div>
             <div class="bubble six"></div>
         </div>
-        
-        <div class="main_container">
+
+        <div class="main_container" style="display:none">
             <div class="white_container">
                 <h1 class="header">What is your name?</h1>
-                <form class="mainForm" action="/select" method="post" >
+                <form class="mainForm" action="/select" method="post">
                     <input class="nameInput" type="text" placeholder="NAME" name="name"
                         oninvalid="this.setCustomValidity('🤡🤡🤡')" oninput="setCustomValidity('')" maxlength="20"
                         required>
@@ -42,14 +42,41 @@
                 </div>
             </div>
 
+            <!-- <input id="test" type="number" onClick=axiosUser()> User ID Test</input> -->
         </div>
     </div>
     <script>
         let test = document.querySelector('.ocean');
+        let body = document.querySelector('.main_container')
         setTimeout(() => {
             test.style.display = "none"
-        }, "500");
-        // }, "9500");
+            body.style.display = "flex"
+        // }, "500");
+        }, "9500");
+
+        function axiosUser() {
+            let x = document.querySelector("#test").value
+            let user = {}
+            user.id = Number(x);
+            console.log(user)
+            axios.get('/data')
+                .then(function (response) {
+                    console.log(response.data)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+            axios.post('/data', {
+                id: user.id
+            }) 
+                .then(function(response) {
+                    console.log(response.data)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+        }
+            
     </script>
 </body>
 
