@@ -124,10 +124,18 @@ app.post('/home', (req, res) => {
 // data test environment
 app.get("/data", (req, res) => {
     console.log(req.body)
-    db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
-        // user.id = row.id;
-        res.json(row)
-    })
+    if (user.name) {
+        db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
+            // user.id = row.id;
+            res.json(row)
+        })
+    }
+    // else {
+    //     db.get(`SELECT * FROM users WHERE id=1`, (err, row) => {
+    //         user.id = row.id;
+    //         res.json(row)
+    //     })
+    // }
     // // console.log(JSON.stringify(user))
     // res.json(user);
 })
@@ -151,23 +159,25 @@ app.post("/data", (req, res) => {
     // console.log(user)
 })
 
-let board = {};
+let scoreboard = [];
 app.get('/leaderboard', async (req, res) => {
     db.each("SELECT * FROM users", (err, row) => {
-        board[row.id] = row
+        scoreboard[row.id - 1] = row
         // console.log(board)
     });
-    // db.each(`SELECT * FROM users`, (err, row) => {
-    //     // console.log(board)
-    //     // x.push(row)
-    //     board[row.id] = row
-    //     // console.log(board)
-    //     // console.log(x)
-    // })
 
-    console.log(board)
-    res.json(board)
-    // await res.send(x.map(user => {
+    sorter = scoreboard
+    for (let i = 0; i < sorter.length; i++) {
+        console.log(sorter[i])
+        sorter[i].score = Math.round((sorter[i].water_drank / sorter[i].water_goal) * 100)
+    }
+    res.send(sorter)
+    // res.send(sorter.map((o,i)=> {(
+    //     `<p>${o}</p>`
+    // )}))
+    // console.log(scoreboard)
+    // await res.json(scoreboard)
+    // res.send(board.map(user => {
     //     `<h1>${user.name}</h1><br>
     //     <p>${user.water_drank}/${user.water_goal}
     //     `
