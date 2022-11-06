@@ -101,6 +101,28 @@ body {
     width: 50px;
     height: 50px;
     align-self: flex-end;
+    margin-right: 3%
+}
+button.add{
+    background: none;
+    border: none;
+    padding: 0;
+}
+.add:hover{
+    filter: drop-shadow(1px 1px 6px #FAF1A2);
+}
+
+.addPopup{
+    background-color: #ffff;
+    filter: drop-shadow(1px 1px 6px #dfdfdf);
+    position: absolute;
+    left: 32%;
+    bottom: 27%;
+    height: 314px;
+    padding: 3%;
+    display: grid;
+    justify-items: center;
+    border-radius: 15px;
 }
 
 .next{
@@ -147,6 +169,7 @@ body {
     border: none;
     padding: 0;
 }
+
 
 .progress_bar {
     width: 530px;
@@ -224,21 +247,52 @@ body {
 }
 
 .mainBtn:hover{
+    background: #2C6A66;
+}
+.custBtn{
     width: 150px;
     height: 50px;
-    background: #2C6A66;
+    background: #708E8C;
     border-radius: 15px;
     border: 0;
     font-weight: 700;
     font-size: 24px;
     font-family: 'Varela Round', sans-serif;
     color: #ffff;
-    margin-top: 5%;
+    margin-left: 2%;
+    
+}
+
+.custBtn:hover{
+    background: #2C6A66;
+}
+.addBtn{
+    width: 100px;
+    height: 65px;
+    background: #E8F1F4;
+    border-radius: 15px;
+    border-color: #708E8C;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: 'Varela Round', sans-serif;
+    color: rgb(0, 0, 0);
+    margin-top: 10%;
+}
+
+.addBtn:hover{
+    background: #BFD1D9;
 }
 
 .mainForm{
     display: flex;
     flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.subForm{
+    display: flex;
+    flex-direction: row;
     align-content: center;
     justify-content: center;
     align-items: center;
@@ -252,4 +306,10 @@ body {
     padding: 5%;
     font-family: 'Varela Round', sans-serif;
     font-size: 16px;
+    text-align: center;
+}
+
+.close{
+    position: relative;
+    right: -47%;
 }

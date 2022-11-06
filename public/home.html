@@ -42,18 +42,42 @@
             <option>History Placeholder</option>
           </select>
         </div>
-        <img class="add" src="glasscup.svg" />
+        <div>
+          <button class="add" type="submit" >
+            <img class="add" src="glasscup.svg" />
+        </div>
+        
+        <div class="addPopup ">
+          <span class="close" title="Close Popup">×</span>
+          <h1 class="header">How much did you drink?</h1>
+          <form class="mainForm" method="post" action="/home">
+            <div class="subForm">
+              <input class="nameInput" type="number" placeholder="CUSTOM mL" min="1" value="number">
+              <input class="custBtn" type="submit">
+            </div>
+
+            <div>
+              <button class="addBtn" type="submit" name="drank" value=100>100mL</button>
+              <button class="addBtn" type="submit" name="drank" value=250>250mL</button>
+              <button class="addBtn" type="submit" name="drank" value=500>500mL</button>
+            </div>
+
+            <!-- <button class="mainBtn" type="submit">Confirm</button> -->
+
+          </form>
+        </div>
+
       </div>
     </div>
 
 
-    <form method="post" action="/home">
+    <!-- <form method="post" action="/home">
       <button type="submit" name="drank" value=100>100mL</button>
       <button type="submit" name="drank" value=250>250mL</button>
-      <button type="submit" name="drank" value=500>500mL</button>
-      <!-- <input type="number" name="drank" min="1" max="2000"> -->
-      <!-- <button type="submit">Confirm</button> -->
-    </form>
+      <button type="submit" name="drank" value=500>500mL</button> -->
+        <!-- <input type="number" name="drank" min="1" max="2000"> -->
+        <!-- <button type="submit">Confirm</button> -->
+    <!-- </form> -->
   </div>
 
 
