@@ -8,26 +8,77 @@
     <title>WaterTracker</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
-    <div class="main_container">
-        <div class="white_container">
-            <h1 class="header">What is your name?</h1>
-            <form class="mainForm" action="/select-pal" method="post">
-                <input class="nameInput" type="text" placeholder="NAME" name="name" oninvalid="this.setCustomValidity('🤡🤡🤡')"  oninput="setCustomValidity('')" maxlength="20" required >
-                <button class="mainBtn" type="submit">Confirm</button>
-                
-            </form>
-
-            <div class="pal_cont">
-                <img class="mascot" src="/monkee.svg"/>
-                <img class="mascot" src="/otter.svg"/>
-            </div>
+<body style="overflow: hidden;">
+    <div>
+        <div class="ocean">
+            <img class="hello " id="mascotSplash" src="monkee.svg"></img>
+            <img class="hello " id="mascotSplash2" src="otter.svg"></img>
+            <img class="logo1 " id="logo" src="logo.png"></img>
+            <div class="bubble one"></div>
+            <div class="bubble two"></div>
+            <div class="bubble three"></div>
+            <div class="bubble four"></div>
+            <div class="bubble five"></div>
+            <div class="bubble six"></div>
         </div>
-        
+
+        <div class="main_container" style="display:none">
+            <div class="white_container">
+                <h1 class="header">What is your name?</h1>
+                <form class="mainForm" action="/select" method="post">
+                    <input class="nameInput" type="text" placeholder="NAME" name="name"
+                        oninvalid="this.setCustomValidity('🤡🤡🤡')" oninput="setCustomValidity('')" maxlength="20"
+                        required>
+                    <button class="mainBtn" type="submit">Confirm</button>
+
+                </form>
+
+                <div class="pal_cont">
+                    <img class="mascot" src="/monkee.svg" />
+                    <img class="mascot" src="/otter.svg" />
+                </div>
+            </div>
+
+            <!-- <input id="test" type="number" onClick=axiosUser()> User ID Test</input> -->
+        </div>
     </div>
+    <script>
+        let test = document.querySelector('.ocean');
+        let body = document.querySelector('.main_container')
+        setTimeout(() => {
+            test.style.display = "none"
+            body.style.display = "flex"
+        // }, "500");
+        }, "9500");
+
+        function axiosUser() {
+            let x = document.querySelector("#test").value
+            let user = {}
+            user.id = Number(x);
+            console.log(user)
+            axios.get('/data')
+                .then(function (response) {
+                    console.log(response.data)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+            axios.post('/data', {
+                id: user.id
+            }) 
+                .then(function(response) {
+                    console.log(response.data)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })
+        }
+            
+    </script>
 </body>
+
 
 </html>
