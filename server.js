@@ -23,7 +23,7 @@ db.each("SELECT * FROM users", (err, row) => {
 
 app.get('/', (req, res) => {
     console.log(user)
-    res.sendFile(path.join(splashpagePath));
+    res.sendFile(path.join(namepagePath));
 })
 
 var user = {};
