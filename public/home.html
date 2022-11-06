@@ -8,6 +8,7 @@
   <title>WaterTracker</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -15,12 +16,22 @@
     <div class="white_container">
       <div class="goal_gradient"></div>
 
-     <div class="top-section">
-      <h1 class="header today_goal">Today's Goal</h1>
-      <div class="new_goal">Start a New goal<img class='next' src='/next.svg'></div>
-    </div>
+      <div class="top-section">
+        <h1 class="header today_goal">Today's Goal</h1>
+        <div class="new_user">
+          <form method="post" action="/goal" class="new_user">
+            <button class="new_goal" name="reset" value="yes">Start new goal<img class="next" src="/next.svg"></button>
+          </form>
+          <form method="post" action="/" class="new_user">
+            <button class="new_goal">Create new user<img class="next" src="/next.svg"></button>
+          </form>
+        </div>
+      </div>
 
-      <img class="mascot" src="monkee.svg" />
+      <div class="mascot_div">
+        <img class="mascot" src="monkee.svg" />
+        <p class="mascot_text">please go back home</p>
+      </div>
 
       <div class="progress_section">
         <progress class="progress_bar" max="100" value="0">
@@ -33,8 +44,8 @@
 
         <div class="name_cont">
           <h3 class="name_label">Name</h3>
-          <div class="username">Slayerina</div>
-      </div>
+          <div class="username">Slayerina (NO ACCOUNT)</div>
+        </div>
 
         <div class="history_cont">
           <h3 class="history_label">History</h3>
@@ -47,17 +58,20 @@
     </div>
 
 
-    <form method="post" action="/home">
-      <button type="submit" name="drank" value=100>100mL</button>
-      <button type="submit" name="drank" value=250>250mL</button>
-      <button type="submit" name="drank" value=500>500mL</button>
+    <form method="post" action="/home" class="test">
+      <button class="water_send" type="submit" name="drank" value=100>100mL</button>
+      <button class="water_send" type="submit" name="drank" value=250>250mL</button>
+      <button class="water_send" type="submit" name="drank" value=500>500mL</button>
       <!-- <input type="number" name="drank" min="1" max="2000"> -->
       <!-- <button type="submit">Confirm</button> -->
     </form>
   </div>
 
 
-  <script src="app.js"></script>
+  <script src="app.js" defer>
+
+
+  </script>
 </body>
 
 </html>
