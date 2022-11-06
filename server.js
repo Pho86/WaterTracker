@@ -166,8 +166,8 @@ app.get('/leaderboard', async (req, res) => {
     // })
 
     console.log(board)
-    res.json(board)
-    // await res.send(x.map(user => {
+    await res.json(board)
+    // res.send(board.map(user => {
     //     `<h1>${user.name}</h1><br>
     //     <p>${user.water_drank}/${user.water_goal}
     //     `

@@ -14,6 +14,7 @@
 <body style="overflow: hidden;">
     <div>
         <div class="ocean">
+            <p class="skip_splash" onclick=endSplash()>Skip Intro</p>
             <img class="hello " id="mascotSplash" src="monkee.svg"></img>
             <img class="hello " id="mascotSplash2" src="otter.svg"></img>
             <img class="logo1 " id="logo" src="logo.png"></img>
@@ -46,13 +47,16 @@
         </div>
     </div>
     <script>
-        let test = document.querySelector('.ocean');
+        let ocean = document.querySelector('.ocean');
         let body = document.querySelector('.main_container')
-        setTimeout(() => {
-            test.style.display = "none"
+        function endSplash() {
+            ocean.style.display = "none"
             body.style.display = "flex"
-        // }, "500");
-        }, "9500");
+        }
+        // setTimeout(() => {
+            // endSplash()
+        // // }, "500");
+        // }, "9500");
 
         function axiosUser() {
             let x = document.querySelector("#test").value

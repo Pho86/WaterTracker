@@ -138,15 +138,15 @@ function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";
    if (mood === "happy") {
-      console.log(mascotText.happy);
+      // console.log(mascotText.happy);
       bubbleText.innerText = mascotText.happy[(Math.floor(Math.random() * (mascotText.happy.length - 0)))];
    }
    if (mood === "neutral") {
-      console.log(mascotText.neutral);
+      // console.log(mascotText.neutral);
       bubbleText.innerText = mascotText.neutral[(Math.floor(Math.random() * (mascotText.neutral.length - 0)))]
    }
    if (mood === "sad") {
-      console.log(mascotText.sad);
+      // console.log(mascotText.sad);
       bubbleText.innerText = mascotText.sad[(Math.floor(Math.random() * (mascotText.sad.length - 0)))]
    }
    setTimeout(() => {
@@ -162,7 +162,7 @@ function updateHistory(history) {
    historySelect.innerHTML = "";
    for (let i = 0; i < history.length; i++) {
       historyItem = history[i];
-      console.log(historyItem)
+      // console.log(historyItem)
       let option = document.createElement("option");
       option.innerText = historyItem;
       historySelect.append(option)

@@ -486,5 +486,14 @@ button, select, option, input {
     animation-delay: 1s;
     animation-duration: 7s;
     left: 450px;
+}
 
+.skip_splash{
+    width:95%;
+    font-size: 18px;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    /* justify-content: end; */
+    margin-right: 500px;
+    color: white;
 }
