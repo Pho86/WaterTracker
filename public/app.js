@@ -41,7 +41,7 @@ goal();
 //    if(event.target.closest(".water_drank")) {
 //       event.preventDefault();
 //       let value = event.target.value
-   
+
 //       console.log(value)
 //       axios.post("/data", {
 //          water_drank: value
@@ -56,25 +56,45 @@ goal();
 //    }
 // })
 
-let water_inputs = document.querySelectorAll('.water_send')
-for(let i = 0; i < water_inputs.length; i++) {
-   water_inputs[i].addEventListener("click", (event)=>{
+let water_inputs = document.querySelectorAll('.water_send');
+for (let i = 0; i < water_inputs.length; i++) {
+   water_inputs[i].addEventListener("click", (event) => {
       event.preventDefault();
-      let value = event.target.value
-      console.log(value)
+      let value = event.target.value;
+      console.log(value);
+      closePopUp();
       axios.post("/data", {
          water_drank: value
       })
-       .then(function (response) {
-         console.log(response.data)
-         goal();
-       })
-       .catch(function (error) {
-         console.log(error)
-       })
+         .then(function (response) {
+            console.log(response.data)
+            goal();
+         })
+         .catch(function (error) {
+            console.log(error)
+         })
    })
 }
-
+let custom_water_button = document.querySelector('.custBtn');
+let custom_water_input = document.querySelector('.custInput');
+custom_water_button.addEventListener("click", (event) => {
+   event.preventDefault();
+   let value = Number(custom_water_input.value);
+   if (value <= 0 || value > 10000) {
+      return 
+   }
+   closePopUp();
+   axios.post("/data", {
+      water_drank: value
+   })
+      .then(function (response) {
+         console.log(response.data)
+         goal();
+      })
+      .catch(function (error) {
+         console.log(error)
+      })
+})
 
 function updateName(name) {
    let userName = document.querySelector('.username');
@@ -96,6 +116,32 @@ function updateFavicon(pet_type) {
       document.querySelector("link[rel*='icon']").href = "favicon1.ico";
    }
 }
+
+
+//popup functions
+let addPopUp = document.querySelector('.addPopup')
+let closeButton = document.querySelector('.close');
+let blackOverlay = document.querySelector('.black_overlay');
+let addButton = document.querySelector('.add');
+function closePopUp() {
+   addPopUp.style.display = "none";
+   blackOverlay.style.display = "none";
+
+}
+function openPopUp() {
+   addPopUp.style.display = "grid";
+   blackOverlay.style.display = "flex";
+}
+
+blackOverlay.addEventListener("click", function (event) {
+   closePopUp();
+})
+closeButton.addEventListener('click', function (event) {
+   closePopUp();
+})
+addButton.addEventListener('click', function (event) {
+   openPopUp();
+})
 
 
 function updateWater(current, goal) {
@@ -152,7 +198,7 @@ function updateBubble(mood) {
    }
    setTimeout(() => {
       bubbleText.style.transform = "scale(1)";
-  }, "1000");
+   }, "1000");
 }
 
 
