@@ -163,10 +163,6 @@ button, select, option, input {
 }
 
 
-.next {
-    padding: 10px;
-}
-
 .new_goal {
     width: 200px;
     height: 40px;
@@ -228,13 +224,11 @@ button, select, option, input {
     border-radius: 20px;
 }
 
-
 .progress_bar::-webkit-progress-value {
     background-color: #5FCBDF;
     border-radius: 20px;
     transition: all 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955);
 }
-
 
 
 .username {

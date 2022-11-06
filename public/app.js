@@ -16,8 +16,6 @@
 
 // goal();
 
-
-
 // fetch data with async and await function
 const goal = async () => {
    try {
@@ -29,7 +27,7 @@ const goal = async () => {
       updatePet(currentUser.pet_type);
       updateFavicon(currentUser.pet_type)
       updateWater(currentUser.water_drank, currentUser.water_goal);
-      // using test array right now change later 🙈
+      // using test array to visualize  history as not saving water drinking individually in the database as of right now change this later 🙈
       updateHistory(testhistory)
    }
    catch (monkeyerror) {
@@ -89,6 +87,7 @@ function updatePet(petType) {
    pet.src = petType + '.svg';
 }
 
+
 function updateFavicon(pet_type) {
    if (pet_type === "monkee") {
       document.querySelector("link[rel*='icon']").href = "favicon.ico";
@@ -97,6 +96,7 @@ function updateFavicon(pet_type) {
       document.querySelector("link[rel*='icon']").href = "favicon1.ico";
    }
 }
+
 
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
@@ -126,6 +126,7 @@ function updateWater(current, goal) {
    }
 }
 
+
 function finishGoal() {
    let todaysGoalHeading = document.querySelector('.today_goal');
    let goalGradient = document.querySelector('.goal_gradient');
@@ -154,9 +155,10 @@ function updateBubble(mood) {
   }, "1000");
 }
 
+
 let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4: 100 mL"];
 
-// not saving each water input separately as of right now so can't have this functioning
+// not saving each water input separately as of right now so can't have this fully functioning
 function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";
@@ -171,11 +173,13 @@ function updateHistory(history) {
 
 let currentUser = {};
 
+
+
 // if i see slay im checking the commits and banning you 🤗
+// randomized text options for textbubble depending on pet mood, -33% = sad, 33-66% = neutral, +67% = happy
 let mascotText = {
    happy: ["you're doing great", "good job", "👏",],
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
    sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma"]
 }
-
 
