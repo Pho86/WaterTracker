@@ -39,7 +39,23 @@
         <p class="current_goal">0mL/1000mL</p>
       </div>
 
-
+      <div class="black_overlay">
+      </div>
+        <div class="addPopup ">
+          <span class="close" title="Close Popup" alt="close popup">×</span>
+          <h1 class="header">How much did you drink?</h1>
+          <form class="mainForm" method="post" action="/home">
+            <div class="subForm">
+              <input class="nameInput" type="number" placeholder="CUSTOM mL" min="1" value="number">
+              <input class="custBtn" type="submit">
+            </div>
+            <div>
+              <button class="addBtn water_send" type="submit" name="drank" value=100>100mL</button>
+              <button class="addBtn water_send" type="submit" name="drank" value=250>250mL</button>
+              <button class="addBtn water_send" type="submit" name="drank" value=500>500mL</button>
+            </div>
+          </form>
+        </div>
       <div class="bottom_section">
 
         <div class="name_cont">
@@ -53,18 +69,18 @@
             <option>History Placeholder</option>
           </select>
         </div>
-        <img class="add" src="glasscup.svg" />
+        <div>
+          <button class="add" type="submit">
+            <img class="add" src="glasscup.svg" />
+        </div>
+
+
+
       </div>
     </div>
 
 
-    <form method="post" action="/home" class="test">
-      <button class="water_send" type="submit" name="drank" value=100>100mL</button>
-      <button class="water_send" type="submit" name="drank" value=250>250mL</button>
-      <button class="water_send" type="submit" name="drank" value=500>500mL</button>
-      <!-- <input type="number" name="drank" min="1" max="2000"> -->
-      <!-- <button type="submit">Confirm</button> -->
-    </form>
+
   </div>
 
 
