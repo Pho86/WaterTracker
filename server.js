@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const db = require('./database');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const url = process.env.URL || `http://localhost:${port}/`
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -28,7 +29,7 @@ app.get('/', (req, res) => {
 
 var user = {};
 
-// reset the user (aka logout?) 
+// reset the current user (aka logout?) 
 app.post('/', (req, res) => {
     user = {}
     res.sendFile(path.join(namepagePath));
@@ -97,8 +98,6 @@ app.get('/home', (req, res) => {
 });
 
 app.post('/home', (req, res) => {
-
-    // console.log(req.body)
     if (req.body.goal) {
         user.goal = req.body.goal;
         // console.log(user);
@@ -123,7 +122,7 @@ app.post('/home', (req, res) => {
 
 // data test environment
 app.get("/data", (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     if (user.name) {
         db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
             // user.id = row.id;
@@ -141,20 +140,14 @@ app.get("/data", (req, res) => {
 })
 
 //axios post request for water
-app.post("/data", (req, res) => {
+app.post("/data", async (req, res) => {
+    // console.log(req.body)
     if (req.body.water_drank) {
-        if (user.drank === undefined) {
-            user.drank = req.body.water_drank;
-            db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-        }
-        else {
-            console.log(user.drank, req.body.water_drank)
-            user.drank = Number(user.drank) + Number(req.body.water_drank);
-            db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-            console.log(user.drank)
-        }
+        console.log(user.water_drank, req.body.water_drank)
+        user.water_drank = req.body.water_drank;
+        db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
+        console.log(user.water_drank);
     }
-    user.id = req.body.id;
     res.send("sending monkey data 🐒");
     // console.log(user)
 })
@@ -187,4 +180,5 @@ app.get('/leaderboard', async (req, res) => {
 
 app.listen(port, () => {
     console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
+    console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦 \nlocated at: ${url} 🙊 🙈 🦦`);
 });

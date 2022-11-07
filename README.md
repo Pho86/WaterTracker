@@ -1,5 +1,5 @@
 # Philly-Dip
-Basic Node.js and Express app that tracks a users water goal and intake.
+Basic Node.js and Express app that tracks a users water goal and intake. Uses sqlite3 to handle db.
 <br>
 <br>
 run the app with npm run dev or node . or nodemon server.js,

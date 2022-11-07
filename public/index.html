@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WaterTracker</title>
+    <title>AquaPal</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
 </head>
 
 <body style="overflow: hidden;">
@@ -55,7 +55,7 @@
         }
         setTimeout(() => {
             endSplash()
-        // }, "500");
+            // }, "500");
         }, "9500");
 
         function axiosUser() {
@@ -67,20 +67,20 @@
                 .then(function (response) {
                     console.log(response.data)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error)
                 })
             axios.post('/data', {
                 id: user.id
-            }) 
-                .then(function(response) {
+            })
+                .then(function (response) {
                     console.log(response.data)
                 })
-                .catch(function(error) {
+                .catch(function (error) {
                     console.log(error)
                 })
         }
-            
+
     </script>
 </body>
 

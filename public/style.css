@@ -123,20 +123,17 @@ button, select, option, input {
     width: 50px;
     height: 50px;
     align-self: flex-end;
-    margin-right: 3%
+    transition: transform 10s;
 }
 button.add{
     background: none;
     border: none;
     padding: 0;
 }
-.add:hover{
-    filter: drop-shadow(1px 1px 6px #FAF1A2);
-}
 
 .black_overlay {
     position: absolute;
-    opacity: .5;
+    opacity: .4;
     width:100vw;
     height:100vh;
     background-color: black;
@@ -152,10 +149,10 @@ button.add{
     height: 314px;
     padding: 3%;
     /* display: grid; */
+    display: none;
     justify-items: center;
     border-radius: 15px;
     z-index: 100;
-    display: none;
 }
 
 
@@ -163,6 +160,7 @@ button.add{
     filter: drop-shadow(2px 2px 4px #5FCBDF);
     animation: shake 2s;
     animation-iteration-count: 1;
+    transition: transform 2s ease-in-out;
 }
 
 @keyframes shake {
