@@ -216,8 +216,8 @@ let currentUser = {};
 // if i see slay im checking the commits and banning you 🤗
 // object/arrays for randomized text options for textbubble depending on the pet's mood, -33% = sad, 33-66% = neutral, +67% = happy
 let mascotText = {
-   happy: ["you're doing great", "good job", "👏",],
-   neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
-   sad: ["D:", "you ugly", "i hate you", "damn you suck", "you smell", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma"]
+   happy: ["you're doing great", "good job", "👏","SLAYYYY", "YAS QUEEN 💅💅💅",],
+   neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water","hydrate me", "lips feel dry"],
+   sad: ["D:", "you ugly", "i hate you", "damn you suck", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma","piss gon b yellow", "be better"]
 }
 
