@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WaterTracker</title>
+  <title>AquaPal</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
@@ -15,16 +15,11 @@
     <div class="white_container">
       <h1 class="header">Select a Pal</h1>
       <div>
-        <!-- <img class="mascot-select" src="monkee.svg" /> -->
-        <!-- <img class="mascot-select" src="otter.svg" /> -->
         <form action="/goal" method="post">
-          <button type="submit" src="/monkee.svg" name="pet" value="monkee" class="mascot_select_button">
-            <img class="mascot_select" src="monkee.svg" alt="monkey pet"/>
-            <button type="submit" src="/monkee.svg" name="pet" value="otter" class="mascot_select_button">
-              <img class="mascot_select" src="otter.svg" alt="otter pet"/>
-              <!-- <input type="image" id="image" name="monkee" src="/monkee.svg" class="mascot-select" />
-              <input type="image" id="image" name="otter" src="/otter.svg" class="mascot-select" /> -->
-          <!-- <input type="hidden" name="pet" /> -->
+          <button type="submit" name="pet" value="monkee" alt="monkey pet button" class="mascot_select_button">
+            <img class="mascot_select" src="monkee.svg" alt="monkey pet" />
+          <button type="submit" name="pet" value="otter" alt="otter pet button" class="mascot_select_button">
+            <img class="mascot_select" src="otter.svg" alt="otter pet" />
         </form>
       </div>
     </div>
@@ -33,7 +28,7 @@
 <script type="module">
   //i fix this later 
   const name = () => {
-    
+
     fetch('../data')
       .then(res => res.json())
       .then(function (user) {

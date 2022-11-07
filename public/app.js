@@ -27,7 +27,7 @@ const goal = async () => {
       updatePet(currentUser.pet_type);
       updateFavicon(currentUser.pet_type)
       updateWater(currentUser.water_drank, currentUser.water_goal);
-      // using test array to visualize  history as not saving water drinking individually in the database as of right now change this later 🙈
+      // using test array to visualize history as not saving water drinking individually in the database as of right now change this later 🙈
       updateHistory(testhistory)
    }
    catch (monkeyerror) {
@@ -37,34 +37,19 @@ const goal = async () => {
 
 goal();
 
-// document.querySelector('.test').addEventListener('click', (event) => {
-//    if(event.target.closest(".water_drank")) {
-//       event.preventDefault();
-//       let value = event.target.value
-
-//       console.log(value)
-//       axios.post("/data", {
-//          water_drank: value
-//       })
-//        .then(function (response) {
-//          console.log(response.data)
-//          goal();
-//        })
-//        .catch(function (error) {
-//          console.log(error)
-//        })
-//    }
-// })
-
+// send data with the popup buttons to /data as a post request when clicked
 let water_inputs = document.querySelectorAll('.water_send');
 for (let i = 0; i < water_inputs.length; i++) {
-   water_inputs[i].addEventListener("click", (event) => {
+   water_inputs[i].addEventListener("click", async (event) => {
       event.preventDefault();
       let value = event.target.value;
-      console.log(value);
+      const data = await fetch('../data');
+      const currentUser = await data.json();
+      totalWater = Number(currentUser.water_drank) + Number(value);
+      console.log(totalWater);
       closePopUp();
       axios.post("/data", {
-         water_drank: value
+         water_drank: totalWater
       })
          .then(function (response) {
             console.log(response.data)
@@ -75,17 +60,22 @@ for (let i = 0; i < water_inputs.length; i++) {
          })
    })
 }
+
+// send a post request to /data when custom input is submitted
 let custom_water_button = document.querySelector('.custBtn');
 let custom_water_input = document.querySelector('.custInput');
-custom_water_button.addEventListener("click", (event) => {
+custom_water_button.addEventListener("click", async (event) => {
    event.preventDefault();
    let value = Number(custom_water_input.value);
    if (value <= 0 || value > 10000) {
-      return 
+      return
    }
+   const data = await fetch('../data');
+   const currentUser = await data.json();
+   totalWater = Number(currentUser.water_drank) + value;
    closePopUp();
    axios.post("/data", {
-      water_drank: value
+      water_drank: totalWater
    })
       .then(function (response) {
          console.log(response.data)
@@ -96,18 +86,19 @@ custom_water_button.addEventListener("click", (event) => {
       })
 })
 
+//update name text fields
 function updateName(name) {
    let userName = document.querySelector('.username');
    userName.innerText = name;
 }
 
-
+// update pet image
 function updatePet(petType) {
    let pet = document.querySelector('.mascot');
    pet.src = petType + '.svg';
 }
 
-
+// update favicon depending on what pet you have
 function updateFavicon(pet_type) {
    if (pet_type === "monkee") {
       document.querySelector("link[rel*='icon']").href = "favicon.ico";
@@ -143,7 +134,7 @@ addButton.addEventListener('click', function (event) {
    openPopUp();
 })
 
-
+// update the progress bar depending on % of goal completed
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
    let progressBar = document.querySelector('.progress_bar');
@@ -172,7 +163,7 @@ function updateWater(current, goal) {
    }
 }
 
-
+// goal completion changes to screen when goal is reached
 function finishGoal() {
    let todaysGoalHeading = document.querySelector('.today_goal');
    let goalGradient = document.querySelector('.goal_gradient');
@@ -180,7 +171,7 @@ function finishGoal() {
    todaysGoalHeading.innerText = "Goal Reached!";
 }
 
-
+// update the pet text bubble randomly and scale up and down
 function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";
@@ -205,6 +196,7 @@ function updateBubble(mood) {
 let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4: 100 mL"];
 
 // not saving each water input separately as of right now so can't have this fully functioning
+// update history select and add options 
 function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";
@@ -222,7 +214,7 @@ let currentUser = {};
 
 
 // if i see slay im checking the commits and banning you 🤗
-// randomized text options for textbubble depending on pet mood, -33% = sad, 33-66% = neutral, +67% = happy
+// object/arrays for randomized text options for textbubble depending on the pet's mood, -33% = sad, 33-66% = neutral, +67% = happy
 let mascotText = {
    happy: ["you're doing great", "good job", "👏",],
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water",],
