@@ -179,6 +179,6 @@ app.get('/leaderboard', async (req, res) => {
 })
 
 app.listen(port, () => {
+    // console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
     console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
-    console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦 \nlocated at: ${url} 🙊 🙈 🦦`);
 });
