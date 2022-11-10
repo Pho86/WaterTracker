@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 var user = {};
 
-// reset the current user (aka logout?) 
+// reset the current user (aka change the current user) 
 app.post('/', (req, res) => {
     user = {}
     res.sendFile(path.join(namepagePath));
@@ -47,16 +47,7 @@ app.post('/select', (req, res) => {
     db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
         user.id = row.id;
         console.log(row);
-        // console.log(user);
     })
-    if (req.body.name) {
-        // db.each("SELECT * FROM users WHERE id=(?)", [user.id] , (err, row) => {
-        //     // console.log(row);
-        //     console.log('xxxxxxxxxxxxxx')
-        //     var x = row.id;
-        //     console.log(x);
-        // });
-    }
 
     res.sendFile(path.join(petpagePath));
 })
@@ -77,19 +68,6 @@ app.post('/goal', (req, res) => {
     });
     console.log(user);
     res.sendFile(path.join(goalpagePath));
-})
-
-// don't have a signup page right now so useless
-app.post('/signup', (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
-    db.run("INSERT INTO users (user_name, password) values (?, ?)", [username, password]);
-
-    db.each("SELECT * FROM users ", (err, row) => {
-        console.log(row)
-    });
-
-    res.sendFile(path.join(namepagePath));
 })
 
 
@@ -149,7 +127,6 @@ app.post("/data", async (req, res) => {
         console.log(user.water_drank);
     }
     res.send("sending monkey data 🐒");
-    // console.log(user)
 })
 
 let scoreboard = [];
