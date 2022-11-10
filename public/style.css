@@ -35,6 +35,8 @@ button, select, option, input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 10;
+    position:relative;
 }
 
 
@@ -204,7 +206,6 @@ button.add{
     background-color: white;
     border: #708E8C solid 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    /* z-index: 100; */
     color: #708E8C;
     font-weight: 500;
     font-size: 16px;
@@ -221,12 +222,10 @@ button.add{
     margin: 30px;
 }
 
-
 .mascot_select {
     width: 200px;
     height: 200px;
     margin: 30px;
-    /* margin-top: 60px; */
     transition: all .45s ease-in-out;
 }
 
@@ -240,8 +239,8 @@ button.add{
     background: none;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
-
 
 .progress_bar {
     width: 530px;
@@ -262,7 +261,6 @@ button.add{
     transition: all 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955);
 }
 
-
 .username {
     width: fit-content;
     background-color: #C7F3FC;
@@ -272,7 +270,6 @@ button.add{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
-
 
 .history {
     width: 300px;
@@ -289,6 +286,7 @@ button.add{
 .history:active{
     border: none;
 }
+
 .history:hover {
     filter: drop-shadow(2px 2px 4px #5FCBDF);
 }
@@ -309,10 +307,6 @@ button.add{
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.pal_cont {
-    /* padding: 5%; */
 }
 
 .mainBtn {
@@ -349,6 +343,7 @@ button.add{
 .custBtn:hover{
     background: #2C6A66;
 }
+
 .addBtn{
     width: 100px;
     height: 65px;
@@ -379,6 +374,7 @@ button.add{
     justify-content: center;
     align-items: center;
 }
+
 .subForm{
     display: flex;
     flex-direction: row;
@@ -413,7 +409,8 @@ button.add{
 .ocean {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(0deg, #183f53, #5FCBDF)
+    background-image: linear-gradient(0deg, #183f53, #5FCBDF);
+    z-index: -100;
 }
 
 .bubble {
@@ -424,6 +421,8 @@ button.add{
     background-color: white;
     bottom: -70px;
     opacity: 0.2;
+    /* z-index: -1; */
+    pointer-events: none;
     animation: bubble 15s ease-in-out infinite,
         sideWays 5s ease-in-out infinite alternate;
 }
@@ -534,7 +533,6 @@ button.add{
     }
 }
 
-
 .hello {
     position: absolute;
     bottom: -40px;
@@ -560,8 +558,6 @@ button.add{
     animation-duration: 12s;
     left: 450px;
 }
-
-
 
 #logo {
     width: 400px;

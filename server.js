@@ -14,12 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-//directories for each page path 
-const namepagePath = __dirname + '/public/index.html'
-const splashpagePath = __dirname + '/public/splash.html'
-const petpagePath = __dirname + '/public/select-pal.html'
-const goalpagePath = __dirname + '/public/goal.html'
-const homepagePath = __dirname + '/public/home.html'
 
 // console logging rows for sql database
 db.each("SELECT * FROM users", (err, row) => {
@@ -29,30 +23,29 @@ db.each("SELECT * FROM users", (err, row) => {
 app.get('/', (req, res) => {
     console.log(user)
     res.render("index.ejs");
-    
 })
 
 let user = {};
 
+
 // reset the current user (aka change the current user) 
 app.post('/', (req, res) => {
     user = {}
-    // res.sendFile(path.join(namepagePath));
+    res.render("index.ejs");
 })
 
 
 app.post('/select', (req, res) => {
-    // console.log(req.body)
     user.name = req.body.name;
-    // db.run("INSERT INTO users (name) values (?)", [user.name]);
     db.run("INSERT INTO users (name) values (?)", [user.name]);
     db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
         user.id = row.id;
         console.log(row);
     })
 
-    res.render("select-pal.ejs", {user});
+    res.render("select-pal.ejs", { user });
 })
+
 
 app.post('/goal', (req, res) => {
     console.log(user)
@@ -61,20 +54,20 @@ app.post('/goal', (req, res) => {
         db.run(`UPDATE users SET pet_type=(?) WHERE name=(?)`, [user.pet, user.name]);
     }
     if (req.body.reset) {
-        user.drank = 0;
-        db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.drank, user.name]);
-        db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
+        user.water_drank = 0;
+        db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.water_drank, user.name]);
+        db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
     }
     db.each("SELECT * FROM users", (err, row) => {
         console.log(row);
     });
     console.log(user);
-    res.render("goal.ejs", {user});
+    res.render("goal.ejs", { user });
 })
 
 
 app.get('/home', (req, res) => {
-    res.render("home.ejs", {user});
+    res.render("home.ejs", { user });
 });
 
 app.post('/home', (req, res) => {
@@ -83,21 +76,8 @@ app.post('/home', (req, res) => {
         // console.log(user);
         db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.goal, user.name]);
     }
-
-    // if (req.body.drank) {
-    //     if (user.drank === undefined) {
-    //         user.drank = req.body.drank;
-    //         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-    //     } else {
-    //         user.drank = Number(user.drank) + Number(req.body.drank);
-    //         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-    //     }
-    //     // console.log(user);
-    //     // res.render('/home.html')
-    // }
-    res.render("home.ejs", {user});
+    res.render("home.ejs", { user });
 })
-
 
 
 // data test environment
@@ -109,7 +89,8 @@ app.get("/data", (req, res) => {
     }
 })
 
-//axios post request for water
+
+//axios post reqeust to the data for water drunk and to update the history
 app.post("/data", async (req, res) => {
     // console.log(req.body)
     if (req.body.water_drank) {
@@ -117,6 +98,10 @@ app.post("/data", async (req, res) => {
         user.water_drank = req.body.water_drank;
         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
         console.log(user.water_drank);
+    }
+    if (req.body.history) {
+        user.history = req.body.history;
+        // console.log(user.water_drank, req.body.water_drank); 
     }
     res.send("sending monkey data 🐒");
 })
@@ -134,6 +119,7 @@ app.get('/leaderboard', async (req, res) => {
         sorter[i].score = Math.round((sorter[i].water_drank / sorter[i].water_goal) * 100)
     }
     res.send(sorter)
+    // res.render("leaderboard.ejs", {sorter})
     // res.send(sorter.map((o,i)=> {(
     //     `<p>${o}</p>`
     // )}))

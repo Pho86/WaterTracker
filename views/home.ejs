@@ -11,80 +11,88 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
-<body>
-  <div class="main_container">
-    <div class="white_container">
-      <div class="goal_gradient"></div>
+<body style="overflow: hidden;">
+  <div class="ocean">
+    <div class="bubble one"></div>
+    <div class="bubble two"></div>
+    <div class="bubble three"></div>
+    <div class="bubble four"></div>
+    <div class="bubble five"></div>
+    <div class="bubble six"></div>
+    <div class="main_container">
+      <div class="white_container">
+        <div class="goal_gradient"></div>
 
-      <div class="top-section">
-        <h1 class="header today_goal">Today's Goal</h1>
-        <div class="new_user">
-          <form method="post" action="/goal" class="new_user">
-            <button class="new_goal" name="reset" value="yes">Start new goal<img class="next" src="/next.svg"></button>
-          </form>
-          <form method="post" action="/" class="new_user">
-            <button class="new_goal">Create new user<img class="next" src="/next.svg"></button>
+        <div class="top-section">
+          <h1 class="header today_goal">Today's Goal</h1>
+          <div class="new_user">
+            <form method="post" action="/goal" class="new_user">
+              <button class="new_goal" name="reset" value="yes">Start new goal<img class="next"
+                  src="/next.svg"></button>
+            </form>
+            <form method="post" action="/" class="new_user">
+              <button class="new_goal">Create new user<img class="next" src="/next.svg"></button>
+            </form>
+          </div>
+        </div>
+
+        <div class="mascot_div">
+          <img class="mascot" src="monkee.svg" alt="your pet" />
+          <p class="mascot_text">please go back home</p>
+        </div>
+
+        <div class="progress_section">
+          <progress class="progress_bar" max="100" value="0">
+          </progress>
+          <!-- <img src="/water.svg"> -->
+          <p class="current_goal">
+            <%= user.water_drank %>mL/<%= user.goal %>mL
+          </p>
+        </div>
+
+        <div class="black_overlay"></div>
+        <div class="addPopup">
+          <span class="close" title="Close Popup" alt="close popup">×</span>
+          <h1 class="header">How much did you drink?</h1>
+          <form class="mainForm" method="post" action="/home">
+            <div class="subForm">
+              <input class="nameInput custInput" type="number" placeholder="CUSTOM mL" min="1" max="10000">
+              <input class="custBtn" type="submit">
+            </div>
+            <div>
+              <button class="addBtn water_send" type="submit" name="drank" value=100>100mL</button>
+              <button class="addBtn water_send" type="submit" name="drank" value=250>250mL</button>
+              <button class="addBtn water_send" type="submit" name="drank" value=500>500mL</button>
+            </div>
           </form>
         </div>
-      </div>
 
-      <div class="mascot_div">
-        <img class="mascot" src="monkee.svg" alt="your pet" />
-        <p class="mascot_text">please go back home</p>
-      </div>
+        <div class="bottom_section">
+          <div class="name_cont">
+            <h3 class="name_label">Name</h3>
+            <div class="username">
+              <%= user.name %>
+            </div>
+          </div>
 
-      <div class="progress_section">
-        <progress class="progress_bar" max="100" value="0">
-        </progress>
-        <!-- <img src="/water.svg"> -->
-        <p class="current_goal"><%= user.water_drank %>/<%= user.goal %></p>
-      </div>
-
-      <div class="black_overlay"></div>
-      <div class="addPopup">
-        <span class="close" title="Close Popup" alt="close popup">×</span>
-        <h1 class="header">How much did you drink?</h1>
-        <form class="mainForm" method="post" action="/home">
-          <div class="subForm">
-            <input class="nameInput custInput" type="number" placeholder="CUSTOM mL" min="1" max="10000">
-            <input class="custBtn" type="submit">
+          <div class="history_cont">
+            <h3 class="history_label">History</h3>
+            <select class="history">
+              <option>YOU HAVE NO DATA</option>
+            </select>
           </div>
           <div>
-            <button class="addBtn water_send" type="submit" name="drank" value=100>100mL</button>
-            <button class="addBtn water_send" type="submit" name="drank" value=250>250mL</button>
-            <button class="addBtn water_send" type="submit" name="drank" value=500>500mL</button>
+            <button class="add" type="submit">
+              <img class="add" src="glasscup.svg" />
           </div>
-        </form>
-      </div>
 
-      <div class="bottom_section">
-        <div class="name_cont">
-          <h3 class="name_label">Name</h3>
-          <div class="username"><%= user.name %></div>
         </div>
-
-        <div class="history_cont">
-          <h3 class="history_label">History</h3>
-          <select class="history">
-            <option>YOU HAVE NO DATA</option>
-          </select>
-        </div>
-        <div>
-          <button class="add" type="submit">
-            <img class="add" src="glasscup.svg" />
-        </div>
-
-
-
       </div>
     </div>
-
-
-
   </div>
 
 
-  <script src="/app.js" defer>
+  <script src="/app.js">
 
 
   </script>

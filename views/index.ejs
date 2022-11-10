@@ -12,20 +12,19 @@
 </head>
 
 <body style="overflow: hidden;">
-    <div>
-        <div class="ocean">
+    <div class="ocean">
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+        <div class="bubble four"></div>
+        <div class="bubble five"></div>
+        <div class="bubble six"></div>
+        <div class="splash">
             <p class="skip_splash" onclick=endSplash()>Skip Intro</p>
             <img class="hello " id="mascotSplash" src="monkee.svg"></img>
             <img class="hello " id="mascotSplash2" src="otter.svg"></img>
             <img class="logo1 " id="logo" src="logo.png"></img>
-            <div class="bubble one"></div>
-            <div class="bubble two"></div>
-            <div class="bubble three"></div>
-            <div class="bubble four"></div>
-            <div class="bubble five"></div>
-            <div class="bubble six"></div>
         </div>
-
         <div class="main_container" style="display:none">
             <div class="white_container">
                 <h1 class="header">What is your name?</h1>
@@ -42,21 +41,19 @@
                     <img class="mascot" src="/otter.svg" />
                 </div>
             </div>
-
-            <!-- <input id="test" type="number" onClick=axiosUser()> User ID Test</input> -->
         </div>
     </div>
     <script>
-        let ocean = document.querySelector('.ocean');
-        let body = document.querySelector('.main_container')
+        let splash = document.querySelector('.splash');
+        let body = document.querySelector('.main_container');
         function endSplash() {
-            ocean.style.display = "none"
-            body.style.display = "flex"
+            splash.style.display = "none";
+            body.style.display = "flex";
         }
-        setTimeout(() => {
-            endSplash()
-            // }, "500");
-        }, "9500");
+        // setTimeout(() => {
+        //     endSplash();
+        //     // }, "500");
+        // }, "9500");
 
     </script>
 </body>

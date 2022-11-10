@@ -1,21 +1,3 @@
-// fetch data with .then and .catch 
-// const goal = () => {
-//    fetch('../data')
-//       .then(res => res.json())
-//       .then(function (user) {
-//          let currentUser = user;
-//          // console.log(currentUser);
-//          updateName(currentUser.name);
-//          updatePet(currentUser.pet);
-//          updateWater(currentUser.drank, currentUser.goal);
-//       })
-//       .catch(function (monkeyerror) {
-//          console.log(monkeyerror)
-//       })
-// }
-
-// goal();
-
 // fetch data with async and await function
 const goal = async () => {
    try {
@@ -23,20 +5,20 @@ const goal = async () => {
       // console.log(data)
       const currentUser = await data.json();
       console.log(currentUser);
-      // updateName(currentUser.name);
-      // updatePet(currentUser.pet_type);
       updateFavicon(currentUser.pet_type)
+      updatePet(currentUser.pet_type);
       updateWater(currentUser.water_drank, currentUser.water_goal);
-      // using test array to visualize history as not saving water drinking individually in the database as of right now change this later 🙈
-      updateHistory(testhistory)
+      updateHistory(historyWater);
    }
    catch (monkeyerror) {
       console.log(monkeyerror)
    }
 }
 
-// goal();
+goal();
 
+
+let historyWater = []
 // send data with the popup buttons to /data as a post request when clicked
 let water_inputs = document.querySelectorAll('.water_send');
 for (let i = 0; i < water_inputs.length; i++) {
@@ -46,8 +28,8 @@ for (let i = 0; i < water_inputs.length; i++) {
       const data = await fetch('../data');
       const currentUser = await data.json();
       totalWater = Number(currentUser.water_drank) + Number(value);
-      console.log(totalWater);
       closePopUp();
+      historyWater.push(Number(value))
       axios.post("/data", {
          water_drank: totalWater
       })
@@ -58,6 +40,7 @@ for (let i = 0; i < water_inputs.length; i++) {
          .catch(function (error) {
             console.log(error)
          })
+
    })
 }
 
@@ -66,14 +49,16 @@ let custom_water_button = document.querySelector('.custBtn');
 let custom_water_input = document.querySelector('.custInput');
 custom_water_button.addEventListener("click", async (event) => {
    event.preventDefault();
+   const data = await fetch('../data');
+   const currentUser = await data.json();
    let value = Number(custom_water_input.value);
    if (value <= 0 || value > 10000) {
       return
    }
-   const data = await fetch('../data');
-   const currentUser = await data.json();
    totalWater = Number(currentUser.water_drank) + value;
+   historyWater.push(value);
    closePopUp();
+   custom_water_input.value = "";
    axios.post("/data", {
       water_drank: totalWater
    })
@@ -86,11 +71,6 @@ custom_water_button.addEventListener("click", async (event) => {
       })
 })
 
-//update name text fields
-function updateName(name) {
-   let userName = document.querySelector('.username');
-   userName.innerText = name;
-}
 
 // update pet image
 function updatePet(petType) {
@@ -110,14 +90,13 @@ function updateFavicon(pet_type) {
 
 
 //popup functions
-let addPopUp = document.querySelector('.addPopup')
+let addPopUp = document.querySelector('.addPopup');
 let closeButton = document.querySelector('.close');
 let blackOverlay = document.querySelector('.black_overlay');
 let addButton = document.querySelector('.add');
 function closePopUp() {
    addPopUp.style.display = "none";
    blackOverlay.style.display = "none";
-
 }
 function openPopUp() {
    addPopUp.style.display = "grid";
@@ -150,16 +129,16 @@ function updateWater(current, goal) {
    console.log("current % is " + progress);
    progressBar.value = progress;
    if (progress < 33) {
-      updateBubble("sad");
+      updateBubble(-1);
    }
    else if (progress > 67) {
-      updateBubble("happy");
+      updateBubble(1);
       if (progress > 100) {
          finishGoal();
       }
    }
    else {
-      updateBubble("neutral");
+      updateBubble(0);
    }
 }
 
@@ -175,16 +154,13 @@ function finishGoal() {
 function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";
-   if (mood === "happy") {
-      // console.log(mascotText.happy);
+   if (mood === 1) {
       bubbleText.innerText = mascotText.happy[(Math.floor(Math.random() * (mascotText.happy.length - 0)))];
    }
-   if (mood === "neutral") {
-      // console.log(mascotText.neutral);
+   if (mood === 0) {
       bubbleText.innerText = mascotText.neutral[(Math.floor(Math.random() * (mascotText.neutral.length - 0)))]
    }
-   if (mood === "sad") {
-      // console.log(mascotText.sad);
+   if (mood === -1) {
       bubbleText.innerText = mascotText.sad[(Math.floor(Math.random() * (mascotText.sad.length - 0)))]
    }
    setTimeout(() => {
@@ -193,19 +169,36 @@ function updateBubble(mood) {
 }
 
 
-let testhistory = ["History", "MONKEY TEST", "depression", "sadness", "Drink 4: 100 mL"];
-
-// not saving each water input separately as of right now so can't have this fully functioning
-// update history select and add options 
+// update history select and add options and select the newest option, if they haven't drank any water show default text
+let water_history = []
 function updateHistory(history) {
    let historySelect = document.querySelector("select");
    historySelect.innerHTML = "";
-   for (let i = 0; i < history.length; i++) {
-      historyItem = history[i];
-      // console.log(historyItem)
+   if (historyWater.length === 0) {
       let option = document.createElement("option");
-      option.innerText = historyItem;
-      historySelect.append(option)
+      option.innerText = "No water drunk this session";
+      historySelect.append(option);
+   }
+   else {
+      for (let i = 0; i < history.length; i++) {
+         historyItem = history[i];
+         // console.log(historyItem)
+         water_history.push(history[i])
+         let option = document.createElement("option");
+         option.innerText = [i + 1] + " Glass " + historyItem + "mL";
+         historySelect.prepend(option);
+         historySelect.value = [i + 1] + " Glass " + historyItem + "mL";
+         axios.post("/data", {
+            history: water_history
+         })
+            .then(function (response) {
+               console.log(response.data);
+            })
+            .catch(function (error) {
+               console.log(error);
+            })
+         console.log(water_history);
+      }
    }
 }
 
@@ -216,8 +209,8 @@ let currentUser = {};
 // if i see slay im checking the commits and banning you 🤗
 // object/arrays for randomized text options for textbubble depending on the pet's mood, -33% = sad, 33-66% = neutral, +67% = happy
 let mascotText = {
-   happy: ["you're doing great", "good job", "👏","SLAYYYY", "YAS QUEEN 💅💅💅",],
-   neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water","hydrate me", "lips feel dry"],
-   sad: ["D:", "you ugly", "i hate you", "damn you suck", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma","piss gon b yellow", "be better"]
+   happy: ["you're doing great", "good job", "👏", "SLAYYYY", "YAS QUEEN 💅💅💅",],
+   neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water", "hydrate me", "lips feel dry"],
+   sad: ["D:", "you ugly", "i hate you", "damn you suck", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma", "piss gon b yellow", "be better"]
 }
 
