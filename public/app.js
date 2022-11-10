@@ -23,8 +23,8 @@ const goal = async () => {
       // console.log(data)
       const currentUser = await data.json();
       console.log(currentUser);
-      updateName(currentUser.name);
-      updatePet(currentUser.pet_type);
+      // updateName(currentUser.name);
+      // updatePet(currentUser.pet_type);
       updateFavicon(currentUser.pet_type)
       updateWater(currentUser.water_drank, currentUser.water_goal);
       // using test array to visualize history as not saving water drinking individually in the database as of right now change this later 🙈
@@ -35,7 +35,7 @@ const goal = async () => {
    }
 }
 
-goal();
+// goal();
 
 // send data with the popup buttons to /data as a post request when clicked
 let water_inputs = document.querySelectorAll('.water_send');

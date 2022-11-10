@@ -578,4 +578,5 @@ button.add{
     /* justify-content: end; */
     margin-right: 500px;
     color: white;
+    cursor: pointer;
 }

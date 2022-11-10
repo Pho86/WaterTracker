@@ -5,6 +5,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 const url = process.env.URL || `http://localhost:${port}/`
 
+// import ejs and set view engine as ejs files
+const ejs = require('ejs');
+app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,20 +28,18 @@ db.each("SELECT * FROM users", (err, row) => {
 
 app.get('/', (req, res) => {
     console.log(user)
-    res.sendFile(path.join(namepagePath));
+    res.render("index.ejs");
+    
 })
 
-var user = {};
+let user = {};
 
 // reset the current user (aka change the current user) 
 app.post('/', (req, res) => {
     user = {}
-    res.sendFile(path.join(namepagePath));
+    // res.sendFile(path.join(namepagePath));
 })
 
-app.get('/select', (req, res) => {
-    res.sendFile(path.join(petpagePath));
-})
 
 app.post('/select', (req, res) => {
     // console.log(req.body)
@@ -49,7 +51,7 @@ app.post('/select', (req, res) => {
         console.log(row);
     })
 
-    res.sendFile(path.join(petpagePath));
+    res.render("select-pal.ejs", {user});
 })
 
 app.post('/goal', (req, res) => {
@@ -67,12 +69,12 @@ app.post('/goal', (req, res) => {
         console.log(row);
     });
     console.log(user);
-    res.sendFile(path.join(goalpagePath));
+    res.render("goal.ejs", {user});
 })
 
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(homepagePath));
+    res.render("home.ejs", {user});
 });
 
 app.post('/home', (req, res) => {
@@ -93,28 +95,18 @@ app.post('/home', (req, res) => {
     //     // console.log(user);
     //     // res.render('/home.html')
     // }
-    res.sendFile(path.join(homepagePath));
+    res.render("home.ejs", {user});
 })
 
 
 
 // data test environment
 app.get("/data", (req, res) => {
-    // console.log(req.body)
     if (user.name) {
         db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
-            // user.id = row.id;
             res.json(row)
         })
     }
-    // else {
-    //     db.get(`SELECT * FROM users WHERE id=1`, (err, row) => {
-    //         user.id = row.id;
-    //         res.json(row)
-    //     })
-    // }
-    // // console.log(JSON.stringify(user))
-    // res.json(user);
 })
 
 //axios post request for water
@@ -156,6 +148,5 @@ app.get('/leaderboard', async (req, res) => {
 })
 
 app.listen(port, () => {
-    // console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
     console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
 });

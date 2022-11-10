@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaPal</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body>
+  <div class="main_container">
+    <div class="white_container">
+      <h1 class="header"><%= user.name %>, Select a Pal</h1>
+      <div>
+        <form action="/goal" method="post">
+          <button type="submit" name="pet" value="monkee" alt="monkey pet button" class="mascot_select_button">
+            <img class="mascot_select" src="monkee.svg" alt="monkey pet" />
+          <button type="submit" name="pet" value="otter" alt="otter pet button" class="mascot_select_button">
+            <img class="mascot_select" src="otter.svg" alt="otter pet" />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
