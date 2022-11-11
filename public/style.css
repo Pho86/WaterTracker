@@ -411,6 +411,11 @@ button.add{
     height: 100vh;
     background-image: linear-gradient(0deg, #183f53, #5FCBDF);
     z-index: -100;
+    display: flex;
+}
+
+.splash {
+    width:100%;
 }
 
 .bubble {
@@ -539,6 +544,10 @@ button.add{
     animation: mover 15s normal forwards ease-in-out
 }
 
+.mascot_div {
+    display:flex;
+    gap:50px;
+}
 .logo1 {
     position: absolute;
     bottom: -40px;
@@ -549,21 +558,24 @@ button.add{
     width: 250px;
     height: 250px;
     animation-duration: 12s;
-    left: 600px;
+    left: 49%;
+    /* left: 600px; */
 }
 
 #mascotSplash2 {
     width: 250px;
     height: 250px;
     animation-duration: 12s;
-    left: 450px;
+    left: 34%;
+    /* left: 450px; */
 }
 
 #logo {
     width: 400px;
     animation-delay: 1s;
     animation-duration: 7s;
-    left: 450px;
+    left: 35%;
+    /* left: 450px; */
 }
 
 .skip_splash{

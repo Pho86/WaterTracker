@@ -90,7 +90,7 @@ app.get("/data", (req, res) => {
 })
 
 
-//axios post reqeust to the data for water drunk and to update the history
+//axios post reqeust to the data for water drank and to update the history
 app.post("/data", async (req, res) => {
     // console.log(req.body)
     if (req.body.water_drank) {
