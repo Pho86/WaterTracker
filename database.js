@@ -7,7 +7,8 @@ db.run(`CREATE TABLE IF NOT EXISTS users(
     name varchar(20), 
     pet_type varchar(15), 
     water_drank int DEFAULT 0, 
-    water_goal int DEFAULT 0
+    water_goal int DEFAULT 0,
+    score int
     )`
 );
 

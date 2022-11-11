@@ -18,15 +18,34 @@
         <div class="bubble four"></div>
         <div class="bubble five"></div>
         <div class="bubble six"></div>
-        <div class="main_container">
-            <div class="white_container">
-                <!-- <p><%= sorter %></p> -->
+        <div class="main_container" >
+            <div class="white_container" style="width:800px">
+                <h1 class="header">AquaPal Leaderboard</h1>
+                <div class="leaderboard">
+                    <% for(let i=0; i < users.length; i++) { %>
+                        <div class="leaderboard_div">
+                            <p>Name:</p>
+                            <p><%= users[i].name %>&nbsp;</p>
+                            <p>Pet Type:</p>
+                            <p><%= users[i].pet_type %>&nbsp;</p>
+                            <p>Water Drank:</p>
+                            <p><%= users[i].water_drank %>mL&nbsp;</p>
+                            <p>Water Goal:</p>
+                            <p><%= users[i].water_goal %>mL&nbsp;</p>
+                            <p>Score:</p>
+                            <p><%= users[i].score %>&nbsp;</p>
+                            
+                        </div>
+                            <% } %>
+                </div>
             </div>
         </div>
     </div>
 </body>
 
 <script>
-
+    fetch("leaderboard/api")
+        .then
 </script>
+
 </html>

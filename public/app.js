@@ -1,21 +1,26 @@
-// fetch data with async and await function
-const goal = async () => {
+// fetch the current users data and return it
+async function fetchData() {
+   const data = await fetch('../data');
+   const currentUser = await data.json();
+   return currentUser;
+}
+
+// render user data that constantly changes when water is intaked with async and await function
+const renderData = async () => {
    try {
-      const data = await fetch('../data');
-      // console.log(data)
-      const currentUser = await data.json();
+      const currentUser = await fetchData()
       console.log(currentUser);
       updateFavicon(currentUser.pet_type)
       updatePet(currentUser.pet_type);
       updateWater(currentUser.water_drank, currentUser.water_goal);
       updateHistory(historyWater);
    }
-   catch (monkeyerror) {
-      console.log(monkeyerror)
+   catch (error) {
+      console.log(error)
    }
 }
 
-goal();
+renderData();
 
 
 let historyWater = []
@@ -25,8 +30,7 @@ for (let i = 0; i < water_inputs.length; i++) {
    water_inputs[i].addEventListener("click", async (event) => {
       event.preventDefault();
       let value = event.target.value;
-      const data = await fetch('../data');
-      const currentUser = await data.json();
+      const currentUser = await fetchData();
       totalWater = Number(currentUser.water_drank) + Number(value);
       closePopUp();
       historyWater.push(Number(value))
@@ -35,12 +39,11 @@ for (let i = 0; i < water_inputs.length; i++) {
       })
          .then(function (response) {
             console.log(response.data)
-            goal();
+            renderData();
          })
          .catch(function (error) {
             console.log(error)
          })
-
    })
 }
 
@@ -49,8 +52,7 @@ let custom_water_button = document.querySelector('.custBtn');
 let custom_water_input = document.querySelector('.custInput');
 custom_water_button.addEventListener("click", async (event) => {
    event.preventDefault();
-   const data = await fetch('../data');
-   const currentUser = await data.json();
+   const currentUser = await fetchData();
    let value = Number(custom_water_input.value);
    if (value <= 0 || value > 10000) {
       return
@@ -64,7 +66,7 @@ custom_water_button.addEventListener("click", async (event) => {
    })
       .then(function (response) {
          console.log(response.data)
-         goal();
+         renderData();
       })
       .catch(function (error) {
          console.log(error)
@@ -77,6 +79,7 @@ function updatePet(petType) {
    let pet = document.querySelector('.mascot');
    pet.src = petType + '.svg';
 }
+
 
 // update favicon depending on what pet you have
 function updateFavicon(pet_type) {
@@ -113,7 +116,8 @@ addButton.addEventListener('click', function (event) {
    openPopUp();
 })
 
-// update the progress bar depending on % of goal completed
+
+// update the progress bar depending on % of goal completed and change the pet's happiness level
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
    let progressBar = document.querySelector('.progress_bar');
@@ -150,7 +154,7 @@ function finishGoal() {
    todaysGoalHeading.innerText = "Goal Reached!";
 }
 
-// update the pet text bubble randomly and scale up and down
+// update the pet text bubble randomly depending on the mood and transform scale it up and down
 function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";
@@ -171,39 +175,41 @@ function updateBubble(mood) {
 
 // update history select and add options and select the newest option, if they haven't drank any water show default text
 let water_history = []
-function updateHistory(history) {
+async function getHistory() {
+   const data = await fetch('../history');
+   const currentHistory = await data.json();
+   return currentHistory;
+}
+async function updateHistory(history) {
    let historySelect = document.querySelector("select");
-   historySelect.innerHTML = "";
    if (historyWater.length === 0) {
+      historySelect.innerHTML = "";
       let option = document.createElement("option");
       option.innerText = "No water drunk this session";
       historySelect.append(option);
    }
    else {
-      for (let i = 0; i < history.length; i++) {
-         historyItem = history[i];
-         // console.log(historyItem)
-         water_history.push(history[i])
-         let option = document.createElement("option");
-         option.innerText = [i + 1] + " Glass " + historyItem + "mL";
-         historySelect.prepend(option);
-         historySelect.value = [i + 1] + " Glass " + historyItem + "mL";
-         axios.post("/data", {
-            history: water_history
-         })
-            .then(function (response) {
-               console.log(response.data);
-            })
-            .catch(function (error) {
-               console.log(error);
-            })
-         console.log(water_history);
+      if (historySelect.value === "No water drunk this session") {
+         historySelect.remove(0)
       }
+      historyItem = history[history.length - 1]
+      water_history.push(historyItem)
+      console.log(history)
+      axios.post("/history", {
+         history: water_history
+      })
+         .then(function (response) {
+            console.log(response.data)
+         })
+         .catch((error) => {
+            console.log(error)
+         })
+      let option = document.createElement("option");
+      option.innerText = [history.length] + " Glass " + historyItem + "mL";
+      historySelect.value = [history.length] + " Glass " + historyItem + "mL";
+      historySelect.prepend(option);
    }
 }
-
-let currentUser = {};
-
 
 
 // if i see slay im checking the commits and banning you 🤗
@@ -213,4 +219,3 @@ let mascotText = {
    neutral: ["hi", "nice", "you're doing good", "keep going strong", "drink water", "hydrate me", "lips feel dry"],
    sad: ["D:", "you ugly", "i hate you", "damn you suck", "🤡", "drink water please", "me thirsty", "💀", "shibar", "du ma", "piss gon b yellow", "be better"]
 }
-

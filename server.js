@@ -99,38 +99,34 @@ app.post("/data", async (req, res) => {
         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
         console.log(user.water_drank);
     }
+    res.send("sending monkey data 🐒");
+})
+
+app.post("/history", async (req, res)=> {
+    console.log(req.body)
     if (req.body.history) {
         user.history = req.body.history;
         // console.log(user.water_drank, req.body.water_drank); 
     }
-    res.send("sending monkey data 🐒");
+    res.send("sending monkey data to history 🐒");
+})
+user.history = [];
+app.get("/history", (req, res) => {
+    res.json(user.history);
 })
 
 let scoreboard = [];
 app.get('/leaderboard', async (req, res) => {
-    db.each("SELECT * FROM users", (err, row) => {
-        scoreboard[row.id - 1] = row
-        // console.log(board)
+    db.all('SELECT * FROM users ORDER BY score DESC', (err, rows) => {
+        res.render("leaderboard.ejs", {'users': rows})
     });
-
-    sorter = scoreboard
-    for (let i = 0; i < sorter.length; i++) {
-        console.log(sorter[i])
-        sorter[i].score = Math.round((sorter[i].water_drank / sorter[i].water_goal) * 100)
-    }
-    res.send(sorter)
-    // res.render("leaderboard.ejs", {sorter})
-    // res.send(sorter.map((o,i)=> {(
-    //     `<p>${o}</p>`
-    // )}))
-    // console.log(scoreboard)
-    // await res.json(scoreboard)
-    // res.send(board.map(user => {
-    //     `<h1>${user.name}</h1><br>
-    //     <p>${user.water_drank}/${user.water_goal}
-    //     `
-    // }).join(' ')
-    // )
+})
+app.get('/leaderboard/api', async (req, res) => {
+    db.all('SELECT * FROM users ORDER BY water_drank / water_goal DESC', (err, rows) => {
+        db.run('UPDATE users SET score = ROUND((CAST([water_drank] AS FLOAT) / water_goal * 100))')
+        // res.render("leaderboard.ejs", {rows})
+        res.json(rows);
+    });
 })
 
 app.listen(port, () => {
