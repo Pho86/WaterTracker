@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaPal</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
+</head>
+
+<body style="overflow: hidden;">
+    <div class="ocean">
+        <div class="bubble one splash_bubble"></div>
+        <div class="bubble two splash_bubble"></div>
+        <div class="bubble three splash_bubble"></div>
+        <div class="bubble four splash_bubble"></div>
+        <div class="bubble five splash_bubble"></div>
+        <div class="bubble six splash_bubble"></div>
+        <div class="splash">
+            <div class="skip_splash_div">
+                <p class="skip_splash" onclick=endSplash()>Skip Intro</p>
+            </div>
+            <div class="splash_mascot_div">
+                <img class="hello " id="mascotSplash" src="monkee.svg"></img>
+                <img class="hello " id="mascotSplash2" src="otter.svg"></img>
+            </div>
+            <div class="logo_div">
+                <img class="logo1 " id="logo" src="logo.png"></img>
+            </div>
+        </div>
+        <div class="main_container" style="display:none">
+            <div class="white_container">
+                <h1 class="header">What is your name?</h1>
+                <form class="mainForm" action="/select" method="post">
+                    <input class="nameInput" type="text" placeholder="NAME" name="name"
+                        oninvalid="this.setCustomValidity('🤡🤡🤡')" oninput="setCustomValidity('')" maxlength="20"
+                        required>
+                    <button class="mainBtn" type="submit">Confirm</button>
+
+                </form>
+
+                <div class="pal_cont">
+                    <img class="mascot" src="/monkee.svg" />
+                    <img class="mascot" src="/otter.svg" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let splash = document.querySelector('.splash');
+        let body = document.querySelector('.main_container');
+        function endSplash() {
+            splash.style.display = "none";
+            body.style.display = "flex";
+        }
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        }
+        // setTimeout(() => {
+        //     endSplash();
+        //     // }, "500");
+        // }, "9500");
+
+    </script>
+</body>
+
+
+</html>

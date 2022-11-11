@@ -10,7 +10,11 @@ body {
     margin: 0;
     font-family: 'Varela Round', sans-serif;
 }
-button, select, option, input {
+
+button,
+select,
+option,
+input {
     font-family: 'Varela Round', sans-serif;
 }
 
@@ -35,6 +39,8 @@ button, select, option, input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 10;
+    position: relative;
 }
 
 
@@ -58,7 +64,7 @@ button, select, option, input {
     margin-left: 420px;
     margin-bottom: 180px;
     font-size: 22px;
-    transition: all .8s ease-in-out;
+    transition: transform .8s ease-in-out;
 }
 
 .goal_gradient {
@@ -125,7 +131,8 @@ button, select, option, input {
     align-self: flex-end;
     transition: transform 10s;
 }
-button.add{
+
+button.add {
     background: none;
     border: none;
     padding: 0;
@@ -134,15 +141,15 @@ button.add{
 .black_overlay {
     position: absolute;
     opacity: .4;
-    width:100vw;
-    height:100vh;
+    width: 100vw;
+    height: 100vh;
     background-color: black;
     /* pointer-events: none; */
     z-index: 100;
     display: none;
 }
 
-.addPopup{
+.addPopup {
     background-color: #ffff;
     filter: drop-shadow(1px 1px 6px #dfdfdf);
     position: absolute;
@@ -204,7 +211,6 @@ button.add{
     background-color: white;
     border: #708E8C solid 2px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    /* z-index: 100; */
     color: #708E8C;
     font-weight: 500;
     font-size: 16px;
@@ -226,7 +232,6 @@ button.add{
     width: 200px;
     height: 200px;
     margin: 30px;
-    /* margin-top: 60px; */
     transition: all .45s ease-in-out;
 }
 
@@ -240,8 +245,8 @@ button.add{
     background: none;
     border: none;
     padding: 0;
+    cursor: pointer;
 }
-
 
 .progress_bar {
     width: 530px;
@@ -262,7 +267,6 @@ button.add{
     transition: all 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955);
 }
 
-
 .username {
     width: fit-content;
     background-color: #C7F3FC;
@@ -272,7 +276,6 @@ button.add{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
-
 
 .history {
     width: 300px;
@@ -286,9 +289,10 @@ button.add{
     appearance: none;
 }
 
-.history:active{
+.history:active {
     border: none;
 }
+
 .history:hover {
     filter: drop-shadow(2px 2px 4px #5FCBDF);
 }
@@ -311,10 +315,6 @@ button.add{
     gap: 8px;
 }
 
-.pal_cont {
-    /* padding: 5%; */
-}
-
 .mainBtn {
     width: 150px;
     height: 50px;
@@ -328,11 +328,11 @@ button.add{
     transition: all .15s ease-in-out;
 }
 
-.mainBtn:hover{
+.mainBtn:hover {
     background: #2C6A66;
 }
 
-.custBtn{
+.custBtn {
     width: 150px;
     height: 50px;
     background: #708E8C;
@@ -343,13 +343,14 @@ button.add{
     font-family: 'Varela Round', sans-serif;
     color: #ffff;
     margin-left: 2%;
-    
+
 }
 
-.custBtn:hover{
+.custBtn:hover {
     background: #2C6A66;
 }
-.addBtn{
+
+.addBtn {
     width: 100px;
     height: 65px;
     background: #E8F1F4;
@@ -362,7 +363,7 @@ button.add{
     margin-top: 10%;
 }
 
-.addBtn:hover{
+.addBtn:hover {
     background: #BFD1D9;
 }
 
@@ -379,7 +380,8 @@ button.add{
     justify-content: center;
     align-items: center;
 }
-.subForm{
+
+.subForm {
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -397,12 +399,12 @@ button.add{
     text-align: center;
 }
 
-.close{
+.close {
     display: flex;
     justify-content: flex-end;
     font-size: 36px;
     width: 100%;
-    height:100%;
+    height: 100%;
     cursor: pointer;
     margin: -15px;
 }
@@ -413,7 +415,13 @@ button.add{
 .ocean {
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(0deg, #183f53, #5FCBDF)
+    background-image: linear-gradient(0deg, #183f53, #5FCBDF);
+    z-index: -100;
+    display: flex;
+}
+
+.splash {
+    width: 100vw;
 }
 
 .bubble {
@@ -424,6 +432,8 @@ button.add{
     background-color: white;
     bottom: -70px;
     opacity: 0.2;
+    /* z-index: -1; */
+    pointer-events: none;
     animation: bubble 15s ease-in-out infinite,
         sideWays 5s ease-in-out infinite alternate;
 }
@@ -534,48 +544,130 @@ button.add{
     }
 }
 
-
 .hello {
     position: absolute;
     bottom: -40px;
-    animation: mover 15s normal forwards ease-in-out
+    /* animation: mover 15s normal forwards ease-in-out; */
+}
+
+.splash_mascot_div {
+    display: flex;
+    animation: mover 12s normal forwards ease-in-out;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .logo1 {
     position: absolute;
     bottom: -40px;
-    animation: logoMove 10s normal forwards ease-in-out
+    animation: logoMove 10s normal forwards ease-in-out;
 }
 
 #mascotSplash {
     width: 250px;
     height: 250px;
     animation-duration: 12s;
-    left: 600px;
+    padding-left: 140px;
+    /* left: 600px; */
 }
 
 #mascotSplash2 {
     width: 250px;
     height: 250px;
     animation-duration: 12s;
-    left: 450px;
+    padding-right: 140px;
+    /* left: 450px; */
 }
-
-
 
 #logo {
     width: 400px;
     animation-delay: 1s;
     animation-duration: 7s;
-    left: 450px;
+    /* left: 450px; */
 }
 
-.skip_splash{
-    width:95%;
-    font-size: 18px;
-    display: inline-flex;
-    flex-direction: row-reverse;
-    /* justify-content: end; */
-    margin-right: 500px;
+.logo_div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.skip_splash_div {
+    display: flex;
+    width: 95%;
+    justify-content: flex-end;
+}
+
+.skip_splash {
+    font-size: 20px;
     color: white;
+    cursor: pointer;
+}
+
+.leaderboard {
+    height:inherit;
+    overflow:auto;
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+}
+.leaderboard_div {
+    display: flex;
+    
+}
+
+/* TEMP MEDIA QUERIES */
+@media screen and (max-width:800px) {
+    .white_container {
+        width: 80%;
+    }
+    progress {
+        width: 100% !important;
+    }
+    .bubble {
+        display: none;
+    }
+    .splash_bubble {
+        display: block;
+    }
+    .white_container {
+        height: 100vh;
+    }
+    .mascot, .mascot_select {
+        width: 175px;
+        height: 175px;
+    }
+    .progress_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .current_goal {
+        align-self: center;
+    }
+    
+    .pal_cont {
+        display: flex;
+        justify-content: center;
+    }
+    .goal_gradient {
+        display: none;
+    }
+    .bottom_section {
+        flex-direction: column;
+        align-items: flex-start ;
+    }
+    .add_div {
+        align-self: center;
+    }
+    .mascot_text {
+        margin-left: 0;
+        margin-top: -80px;
+    }
+    .new_goal {
+        width:175px;
+    }
 }

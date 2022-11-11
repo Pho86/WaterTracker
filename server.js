@@ -5,17 +5,15 @@ const app = express();
 const port = process.env.PORT || 3000;
 const url = process.env.URL || `http://localhost:${port}/`
 
+// import ejs and set view engine as ejs files
+const ejs = require('ejs');
+app.set("view engine", "ejs");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-//directories for each page path 
-const namepagePath = __dirname + '/public/index.html'
-const splashpagePath = __dirname + '/public/splash.html'
-const petpagePath = __dirname + '/public/select-pal.html'
-const goalpagePath = __dirname + '/public/goal.html'
-const homepagePath = __dirname + '/public/home.html'
 
 // console logging rows for sql database
 db.each("SELECT * FROM users", (err, row) => {
@@ -24,42 +22,30 @@ db.each("SELECT * FROM users", (err, row) => {
 
 app.get('/', (req, res) => {
     console.log(user)
-    res.sendFile(path.join(namepagePath));
+    res.render("index.ejs");
 })
 
-var user = {};
+let user = {};
 
-// reset the current user (aka logout?) 
+
+// reset the current user (aka change the current user) 
 app.post('/', (req, res) => {
     user = {}
-    res.sendFile(path.join(namepagePath));
+    res.render("index.ejs");
 })
 
-app.get('/select', (req, res) => {
-    res.sendFile(path.join(petpagePath));
-})
 
 app.post('/select', (req, res) => {
-    // console.log(req.body)
     user.name = req.body.name;
-    // db.run("INSERT INTO users (name) values (?)", [user.name]);
     db.run("INSERT INTO users (name) values (?)", [user.name]);
     db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
         user.id = row.id;
         console.log(row);
-        // console.log(user);
     })
-    if (req.body.name) {
-        // db.each("SELECT * FROM users WHERE id=(?)", [user.id] , (err, row) => {
-        //     // console.log(row);
-        //     console.log('xxxxxxxxxxxxxx')
-        //     var x = row.id;
-        //     console.log(x);
-        // });
-    }
 
-    res.sendFile(path.join(petpagePath));
+    res.render("select-pal.ejs", { user });
 })
+
 
 app.post('/goal', (req, res) => {
     console.log(user)
@@ -68,33 +54,20 @@ app.post('/goal', (req, res) => {
         db.run(`UPDATE users SET pet_type=(?) WHERE name=(?)`, [user.pet, user.name]);
     }
     if (req.body.reset) {
-        user.drank = 0;
-        db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.drank, user.name]);
-        db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
+        user.water_drank = 0;
+        db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.water_drank, user.name]);
+        db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
     }
     db.each("SELECT * FROM users", (err, row) => {
         console.log(row);
     });
     console.log(user);
-    res.sendFile(path.join(goalpagePath));
-})
-
-// don't have a signup page right now so useless
-app.post('/signup', (req, res) => {
-    const username = req.body.username
-    const password = req.body.password
-    db.run("INSERT INTO users (user_name, password) values (?, ?)", [username, password]);
-
-    db.each("SELECT * FROM users ", (err, row) => {
-        console.log(row)
-    });
-
-    res.sendFile(path.join(namepagePath));
+    res.render("goal.ejs", { user });
 })
 
 
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(homepagePath));
+    res.render("home.ejs", { user });
 });
 
 app.post('/home', (req, res) => {
@@ -103,43 +76,21 @@ app.post('/home', (req, res) => {
         // console.log(user);
         db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.goal, user.name]);
     }
-
-    // if (req.body.drank) {
-    //     if (user.drank === undefined) {
-    //         user.drank = req.body.drank;
-    //         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-    //     } else {
-    //         user.drank = Number(user.drank) + Number(req.body.drank);
-    //         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.drank, user.name]);
-    //     }
-    //     // console.log(user);
-    //     // res.render('/home.html')
-    // }
-    res.sendFile(path.join(homepagePath));
+    res.render("home.ejs", { user });
 })
-
 
 
 // data test environment
 app.get("/data", (req, res) => {
-    // console.log(req.body)
     if (user.name) {
         db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
-            // user.id = row.id;
             res.json(row)
         })
     }
-    // else {
-    //     db.get(`SELECT * FROM users WHERE id=1`, (err, row) => {
-    //         user.id = row.id;
-    //         res.json(row)
-    //     })
-    // }
-    // // console.log(JSON.stringify(user))
-    // res.json(user);
 })
 
-//axios post request for water
+
+//axios post reqeust to the data for water drank and to update the history
 app.post("/data", async (req, res) => {
     // console.log(req.body)
     if (req.body.water_drank) {
@@ -149,36 +100,35 @@ app.post("/data", async (req, res) => {
         console.log(user.water_drank);
     }
     res.send("sending monkey data 🐒");
-    // console.log(user)
+})
+
+app.post("/history", async (req, res)=> {
+    console.log(req.body)
+    if (req.body.history) {
+        user.history = req.body.history;
+        // console.log(user.water_drank, req.body.water_drank); 
+    }
+    res.send("sending monkey data to history 🐒");
+})
+user.history = [];
+app.get("/history", (req, res) => {
+    res.json(user.history);
 })
 
 let scoreboard = [];
 app.get('/leaderboard', async (req, res) => {
-    db.each("SELECT * FROM users", (err, row) => {
-        scoreboard[row.id - 1] = row
-        // console.log(board)
+    db.all('SELECT * FROM users ORDER BY score DESC', (err, rows) => {
+        res.render("leaderboard.ejs", {'users': rows})
     });
-
-    sorter = scoreboard
-    for (let i = 0; i < sorter.length; i++) {
-        console.log(sorter[i])
-        sorter[i].score = Math.round((sorter[i].water_drank / sorter[i].water_goal) * 100)
-    }
-    res.send(sorter)
-    // res.send(sorter.map((o,i)=> {(
-    //     `<p>${o}</p>`
-    // )}))
-    // console.log(scoreboard)
-    // await res.json(scoreboard)
-    // res.send(board.map(user => {
-    //     `<h1>${user.name}</h1><br>
-    //     <p>${user.water_drank}/${user.water_goal}
-    //     `
-    // }).join(' ')
-    // )
+})
+app.get('/leaderboard/api', async (req, res) => {
+    db.all('SELECT * FROM users ORDER BY water_drank / water_goal DESC', (err, rows) => {
+        db.run('UPDATE users SET score = ROUND((CAST([water_drank] AS FLOAT) / water_goal * 100))')
+        // res.render("leaderboard.ejs", {rows})
+        res.json(rows);
+    });
 })
 
 app.listen(port, () => {
-    // console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
     console.log(`philly-dips' monkey and otter listening on port ${port} 🙊 🙈 🦦`);
 });
