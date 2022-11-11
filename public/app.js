@@ -1,26 +1,26 @@
 // fetch the current users data and return it
-async function fetchData() {
+async function fetchUser() {
    const data = await fetch('../data');
    const currentUser = await data.json();
    return currentUser;
 }
 
 // render user data that constantly changes when water is intaked with async and await function
-const renderData = async () => {
+const renderUser = async () => {
    try {
-      const currentUser = await fetchData()
+      const currentUser = await fetchUser()
       console.log(currentUser);
       updateFavicon(currentUser.pet_type)
       updatePet(currentUser.pet_type);
       updateWater(currentUser.water_drank, currentUser.water_goal);
-      updateHistory(historyWater);
+      await updateHistory(historyWater);
    }
    catch (error) {
       console.log(error)
    }
 }
 
-renderData();
+renderUser();
 
 
 let historyWater = []
@@ -30,7 +30,7 @@ for (let i = 0; i < water_inputs.length; i++) {
    water_inputs[i].addEventListener("click", async (event) => {
       event.preventDefault();
       let value = event.target.value;
-      const currentUser = await fetchData();
+      const currentUser = await fetchUser();
       totalWater = Number(currentUser.water_drank) + Number(value);
       closePopUp();
       historyWater.push(Number(value))
@@ -39,7 +39,7 @@ for (let i = 0; i < water_inputs.length; i++) {
       })
          .then(function (response) {
             console.log(response.data)
-            renderData();
+            renderUser();
          })
          .catch(function (error) {
             console.log(error)
@@ -52,7 +52,7 @@ let custom_water_button = document.querySelector('.custBtn');
 let custom_water_input = document.querySelector('.custInput');
 custom_water_button.addEventListener("click", async (event) => {
    event.preventDefault();
-   const currentUser = await fetchData();
+   const currentUser = await fetchUser();
    let value = Number(custom_water_input.value);
    if (value <= 0 || value > 10000) {
       return
@@ -66,7 +66,7 @@ custom_water_button.addEventListener("click", async (event) => {
    })
       .then(function (response) {
          console.log(response.data)
-         renderData();
+         renderUser();
       })
       .catch(function (error) {
          console.log(error)
@@ -146,6 +146,7 @@ function updateWater(current, goal) {
    }
 }
 
+
 // goal completion changes to screen when goal is reached
 function finishGoal() {
    let todaysGoalHeading = document.querySelector('.today_goal');
@@ -153,6 +154,7 @@ function finishGoal() {
    goalGradient.style.opacity = "1";
    todaysGoalHeading.innerText = "Goal Reached!";
 }
+
 
 // update the pet text bubble randomly depending on the mood and transform scale it up and down
 function updateBubble(mood) {
@@ -175,40 +177,45 @@ function updateBubble(mood) {
 
 // update history select and add options and select the newest option, if they haven't drank any water show default text
 let water_history = []
-async function getHistory() {
+async function fetchHistory() {
    const data = await fetch('../history');
    const currentHistory = await data.json();
    return currentHistory;
 }
 async function updateHistory(history) {
    let historySelect = document.querySelector("select");
-   if (historyWater.length === 0) {
-      historySelect.innerHTML = "";
-      let option = document.createElement("option");
-      option.innerText = "No water drunk this session";
-      historySelect.append(option);
-   }
-   else {
-      if (historySelect.value === "No water drunk this session") {
-         historySelect.remove(0)
-      }
-      historyItem = history[history.length - 1]
-      water_history.push(historyItem)
-      console.log(history)
+   historyItem = history[history.length - 1];
+   if (historyItem !== undefined) {
+      water_history.push(historyItem);
       axios.post("/history", {
          history: water_history
       })
-         .then(function (response) {
-            console.log(response.data)
-         })
-         .catch((error) => {
-            console.log(error)
-         })
-      let option = document.createElement("option");
-      option.innerText = [history.length] + " Glass " + historyItem + "mL";
-      historySelect.value = [history.length] + " Glass " + historyItem + "mL";
-      historySelect.prepend(option);
+         .then((response) => console.log(response.data))
+         .catch((error) => console.log(error))
    }
+   await fetchHistory()
+      .then((response) => {
+         console.log(response)
+         historySelect.innerHTML = "";
+         for (let i = 0; i < response.length; i++) {
+            let option = document.createElement("option");
+            option.innerText = [i + 1] + " Glass " + response[i] + "mL";
+            historySelect.value = [i + 1] + " Glass " + response[i] + "mL";
+            historySelect.prepend(option);
+         }
+         if (response.length === 0) {
+            let option = document.createElement("option");
+            option.innerText = "No water this session";
+            historySelect.append(option);
+         }
+      })
+      .catch((error) => {
+         console.log(error)
+         historySelect.innerHTML = "";
+         let option = document.createElement("option");
+         option.innerText = "No water this session";
+         historySelect.append(option);
+      })
 }
 
 

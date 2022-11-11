@@ -12,9 +12,5 @@ db.run(`CREATE TABLE IF NOT EXISTS users(
     )`
 );
 
-// user_name varchar(15), 
-// password varchar(15),
-// doesn't have an authentication system so not saving username or password 
-
 
 module.exports = db;
