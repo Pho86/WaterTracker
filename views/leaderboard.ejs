@@ -18,34 +18,100 @@
         <div class="bubble four"></div>
         <div class="bubble five"></div>
         <div class="bubble six"></div>
-        <div class="main_container" >
-            <div class="white_container" style="width:800px">
-                <h1 class="header">AquaPal Leaderboard</h1>
-                <div class="leaderboard">
-                    <% for(let i=0; i < users.length; i++) { %>
-                        <div class="leaderboard_div">
-                            <p>Name:</p>
-                            <p><%= users[i].name %>&nbsp;</p>
-                            <p>Pet Type:</p>
-                            <p><%= users[i].pet_type %>&nbsp;</p>
-                            <p>Water Drank:</p>
-                            <p><%= users[i].water_drank %>mL&nbsp;</p>
-                            <p>Water Goal:</p>
-                            <p><%= users[i].water_goal %>mL&nbsp;</p>
-                            <p>Score:</p>
-                            <p><%= users[i].score %>&nbsp;</p>
-                            
+        
+        
+        <div class="skip_splash_div">
+            <form method="post" action="/">
+                <button class="no_button">
+                    <p class="skip_splash" href="views/index.ejs">Restart</p>
+                </button>
+              </form>
+        </div>
+        <div class="main_container" style="display:flex; flex-direction: row; gap:5px;" >
+            <div class="leaderboard_container">
+                <img class="leaderboard_logo" src="/logo.png">
+                <div class="white_container" style="width:800px">
+                    <h1 class="header">Leaderboard</h1>
+                    <div class="leaderboard">
+                        <% for(let i=0; i < 3; i++) { %>
+                            <div class="leaderboard_div" data-id=<%= users[i].id %>>
+                                <p><b>#<%=[i+1] %></b></p>
+                                <% if (users[i].pet_type === "monkee") { %>
+                                    <img src="/monkee.svg" class="mascot_icon">
+                                <% } else {%>
+                                    <img src="/otter.svg" class="mascot_icon">
+                                <% } %>
+                                <p>Name: <%= users[i].name %></p>
+                                <p>ID:<%= users[i].id %></p>
+                                <p>Water Drank: <%= users[i].water_drank %>mL</p>
+                                <p>Water Goal: <%= users[i].water_goal %>mL</p>
+                                <p>Score: <%= users[i].score %></p>
                         </div>
                             <% } %>
+                        <% for(let i=3; i < users.length; i++) { %>
+                            <div class="leaderboard_div" data-id=<%= users[i].id %>>
+                                <p><b>#<%=[i+1] %></b></p>
+                                <% if (users[i].pet_type === "monkee") { %>
+                                    <img src="/monkee.svg" class="mascot_icon">
+                                <% } else {%>
+                                    <img src="/otter.svg" class="mascot_icon">
+                                <% } %>
+                                <p>Name: <%= users[i].name %></p>
+                                <p>ID:<%= users[i].id %></p>
+                                <p>Water Drank: <%= users[i].water_drank %>mL</p>
+                                <p>Water Goal: <%= users[i].water_goal %>mL</p>
+                                <p>Score: <%= users[i].score %></p>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
             </div>
+            <% if (user) { %>
+                <div class="user_container" data-id= <%= user.id %>>
+                    <p>This is you:</p>
+                    <% if (user.pet_type === "monkee") { %>
+                        <img src="/monkee.svg" class="mascot_icon">
+                    <% } else {%>
+                        <img src="/otter.svg" class="mascot_icon">
+                    <% } %>
+                    <p>Name: <%= user.name %></p>
+                    <p>ID:<%= user.id %></p>
+                    <p>Water Drank: <%= user.water_drank %>mL</p>
+                    <p>Water Goal: <%= user.water_goal %>mL</p>
+                    <p>Score: <%= (user.water_drank/user.water_goal * 100).toFixed(0) %></p>
+                    <form action="/home" method="post">
+                        <button class="leaderboard_button" type="submit">Go drink water</button>
+                    </form>
+                </div>
+                <% } else {%>
+                <div class="user_container" data-id>
+                    <p>It seems you have no account, please make one.</p>
+                    <div>
+                        <img src="/monkee.svg" class="mascot_icon">
+                        <img src="/otter.svg" class="mascot_icon">
+                    </div>
+                    <form action="/" method="post">
+                        <button class="leaderboard_button" type="submit">Start</button>
+                    </form>
+                </div>
+            <% } %>
         </div>
     </div>
 </body>
 
 <script>
-    fetch("leaderboard/api")
-        .then
+    let eachUser = document.querySelectorAll('.leaderboard_div');
+    let userData = document.querySelector('.user_container');
+    for(let i =0; i < 3; i++) {
+        eachUser[0].style.background = "#FAF1A2"
+        eachUser[1].style.background = "#FFF7AC"
+        eachUser[2].style.background = "#FFFCE4"
+    }
+    if (userData) {
+        let userID = userData.dataset.id;
+        let userDiv = document.querySelector(`[data-id="${userID}"]`);
+        userDiv.style.background = "#C7F3FC";
+    }
 </script>
 
 </html>

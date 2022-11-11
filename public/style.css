@@ -16,6 +16,7 @@ select,
 option,
 input {
     font-family: 'Varela Round', sans-serif;
+    cursor: pointer;
 }
 
 .white_container {
@@ -39,7 +40,7 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    z-index: 9;
     position: relative;
 }
 
@@ -245,7 +246,6 @@ button.add {
     background: none;
     border: none;
     padding: 0;
-    cursor: pointer;
 }
 
 .progress_bar {
@@ -418,6 +418,7 @@ button.add {
     background-image: linear-gradient(0deg, #183f53, #5FCBDF);
     z-index: -100;
     display: flex;
+    flex-direction: column;
 }
 
 .splash {
@@ -558,6 +559,7 @@ button.add {
     width: 100%;
     height: 100%;
     pointer-events: none;
+    position: absolute;
 }
 
 .logo1 {
@@ -599,14 +601,20 @@ button.add {
     display: flex;
     width: 95%;
     justify-content: flex-end;
+    height:0;
+    z-index: 10;
 }
 
 .skip_splash {
     font-size: 20px;
     color: white;
     cursor: pointer;
+    z-index: 10;
 }
 
+
+
+/* Leaderboard Section */
 .leaderboard {
     height:inherit;
     overflow:auto;
@@ -616,13 +624,70 @@ button.add {
 }
 .leaderboard_div {
     display: flex;
-    
+    justify-content: space-between;
 }
+.leaderboard_logo {
+    width:25rem;
+    padding-bottom: 5px;
+}
+
+.mascot_icon {
+    width:50px;
+    height:50px;
+}
+
+.leaderboard_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_container {
+    background-color: white;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 50%, rgba(213, 248, 255, 1) 100%);
+    width: 200px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px 10px;
+}
+
+.leaderboard_button {
+    width: 150px;
+    height: 45px;
+    background: #708E8C;
+    border-radius: 15px;
+    border: 0;
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffff;
+    margin-top: 5%;
+    transition: all .15s ease-in-out;
+}
+
+.no_button {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
+}
+
+.leaderboard_button:hover {
+    background: #2C6A66;
+}
+
+
 
 /* TEMP MEDIA QUERIES */
 @media screen and (max-width:800px) {
     .white_container {
         width: 80%;
+        height:80vh;
     }
     progress {
         width: 100% !important;
@@ -632,9 +697,6 @@ button.add {
     }
     .splash_bubble {
         display: block;
-    }
-    .white_container {
-        height: 100vh;
     }
     .mascot, .mascot_select {
         width: 175px;
@@ -660,9 +722,13 @@ button.add {
         flex-direction: column;
         align-items: flex-start ;
     }
-    .add_div {
+    .add_div, .name_cont, .history_cont {
         align-self: center;
     }
+    .user_container {
+        display: none;
+    }
+    
     .mascot_text {
         margin-left: 0;
         margin-top: -80px;

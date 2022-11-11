@@ -19,6 +19,15 @@
     <div class="bubble four"></div>
     <div class="bubble five"></div>
     <div class="bubble six"></div>
+    <div class="skip_splash_div">
+
+      <form method="get" action="/leaderboard">
+        <button class="no_button">
+          <p class="skip_splash" href="views/index.ejs">Go To Leaderboard</p>
+        </button>
+      </div>
+    </form>
+
     <div class="main_container">
       <div class="white_container">
         <div class="goal_gradient"></div>
@@ -37,8 +46,12 @@
         </div>
 
         <div class="mascot_div">
-          <img class="mascot" src="monkee.svg" alt="your pet" />
-          <p class="mascot_text">please go back home</p>
+          <% if (user.pet_type==="monkee" ) { %>
+            <img class="mascot" src="monkee.svg" alt="your pet monkey" />
+          <% } else {%>
+            <img class="mascot" src="otter.svg" alt="your pet otter" />
+          <% } %>
+            <p class="mascot_text">please go back home</p>
         </div>
 
         <div class="progress_section">
@@ -92,8 +105,6 @@
 
 
   <script src="/app.js">
-
-
   </script>
 </body>
 
