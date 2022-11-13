@@ -24,11 +24,11 @@
                 <p class="skip_splash" onclick=endSplash()>Skip Intro</p>
             </div>
             <div class="splash_mascot_div">
-                <img class="hello " id="mascotSplash" src="monkee.svg"></img>
-                <img class="hello " id="mascotSplash2" src="otter.svg"></img>
+                <img class="hello " id="mascotSplash" src="monkee.svg" alt="swimming monkey"></img>
+                <img class="hello " id="mascotSplash2" src="otter.svg" alt="swimming otter"></img>
             </div>
             <div class="logo_div">
-                <img class="logo1 " id="logo" src="logo.png"></img>
+                <img class="logo1 " id="logo" src="logo.png" alt="aquapal logo"></img>
             </div>
         </div>
         <div class="main_container" style="display:none">
@@ -43,8 +43,8 @@
                 </form>
 
                 <div class="pal_cont">
-                    <img class="mascot" src="/monkee.svg" />
-                    <img class="mascot" src="/otter.svg" />
+                    <img class="mascot" src="/monkee.svg" alt="monkey pet" />
+                    <img class="mascot" src="/otter.svg" alt="otter pet" />
                 </div>
             </div>
         </div>
@@ -56,6 +56,7 @@
             splash.style.display = "none";
             body.style.display = "flex";
         }
+
         setTimeout(() => {
             endSplash();
         }, "10000");

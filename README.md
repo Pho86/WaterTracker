@@ -1,9 +1,9 @@
 # Philly-Dip
-Basic Node.js and Express app that tracks a users water goal and intake. Uses sqlite3 to handle db. It is hosted on [Heroku](https://aquapal.herokuapp.com/) as of right now.
+Basic Node.js and Express app that tracks a users water goal and intake. Templatted with EJS and uses sqlite3 to handle its database. It is hosted on [Heroku](https://aquapal.herokuapp.com/) as of right now.
 <br>
 <br>
-run the app with npm run dev or node . or nodemon server.js,
-if errors occur when launching just delete node_modules and package-lock.json and npm install to reinstall packages
+if downloading, run the app with npm run dev or node . or nodemon server.js,
+delete node_modules and package-lock.json and then npm install
 # Aqua Pal
 
 Features: 

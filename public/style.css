@@ -615,19 +615,31 @@ button.add {
 
 
 /* Leaderboard Section */
+td {
+    text-align: center;
+}
+th {
+    font-size: 18px;
+}
 .leaderboard {
     height:inherit;
-    overflow:auto;
     width: inherit;
+    overflow-y:scroll;
+    empty-cells: hide;
+}
+.leaderboard_box {
+    overflow: auto;
+    width: inherit;
+    overflow-x: hidden;
+}
+.leaderboard_container {
     display: flex;
     flex-direction: column;
-}
-.leaderboard_div {
-    display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 .leaderboard_logo {
     width:25rem;
+    height:7rem;
     padding-bottom: 5px;
 }
 
@@ -636,11 +648,6 @@ button.add {
     height:50px;
 }
 
-.leaderboard_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 .user_container {
     background-color: white;
@@ -650,7 +657,7 @@ button.add {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     border-radius: 20px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
     padding: 10px 20px 10px;
@@ -667,8 +674,11 @@ button.add {
     color: #ffff;
     margin-top: 5%;
     transition: all .15s ease-in-out;
+    align-self: center;
 }
-
+.center {
+    align-self: center;
+}
 .no_button {
     background:none;
     border:none;
