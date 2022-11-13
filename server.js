@@ -38,17 +38,30 @@ app.post('/', (req, res) => {
 
 app.post('/select', (req, res) => {
     user.name = req.body.name;
-    db.run("INSERT INTO users (name) values (?)", [user.name]);
-    db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
-        user.id = row.id;
-        console.log(row);
-    })
+    db.get("SELECT * FROM users where name=(?)", [user.name], (err, row) => {
+        if (row === undefined) {
+            db.run("INSERT INTO users (name) values (?)", [user.name]);
+            db.get("SELECT id FROM users where name=?", [user.name], (err, row)=> {
+                user.id = row.id
+                console.log(user.id)
+            })
+        }
+        else {
+            db.get("SELECT id FROM users where name=?", [user.name], (err, row)=> {
+                user.id = row.id
+                console.log(user.id)
+            })
+        }
+    });
+    // db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
+    //     // user.id = row.id;
+    //     console.log(row);
+    // })
     res.render("select-pal.ejs", { user });
 })
 
 
 app.post('/goal', (req, res) => {
-    console.log(user)
     if (req.body.pet_type) {
         user.pet_type = req.body.pet_type;
         db.run(`UPDATE users SET pet_type=(?) WHERE name=(?)`, [user.pet_type, user.name]);
@@ -59,10 +72,10 @@ app.post('/goal', (req, res) => {
         db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.water_drank, user.name]);
         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
     }
-    db.each("SELECT * FROM users", (err, row) => {
-        console.log(row);
-    });
-    console.log(user);
+    // db.each("SELECT * FROM users", (err, row) => {
+    //     console.log(row);
+    // });
+    // console.log(user);
     res.render("goal.ejs", { user });
 })
 
