@@ -121,13 +121,6 @@ addButton.addEventListener('click', function (event) {
 function updateWater(current, goal) {
    let currentGoal = document.querySelector('.current_goal');
    let progressBar = document.querySelector('.progress_bar');
-   if (current == undefined) {
-      current = 0;
-   }
-   if (goal == undefined) {
-      goal = 1;
-   }
-   // currentGoal.innerText = `${current}mL/\n${goal}mL`;
    currentGoal.innerText = `${current}mL/${goal}mL`;
    let progress = (Number(current) / Number(goal)) * 100;
    console.log("current % is " + progress);
@@ -147,7 +140,7 @@ function updateWater(current, goal) {
 }
 
 
-// goal completion changes to screen when goal is reached
+// goal completion overlay appears when water goal is reached, function is called in updateWater function
 function finishGoal() {
    let todaysGoalHeading = document.querySelector('.today_goal');
    let goalGradient = document.querySelector('.goal_gradient');
@@ -156,7 +149,8 @@ function finishGoal() {
 }
 
 
-// update the pet text bubble randomly depending on the mood and transform scale it up and down
+// update the pet text bubble randomly depending on mood and transform the text bubble by scaling up/down
+// 1 = happy, 0 = neutral, -1 = sad
 function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";
