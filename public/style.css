@@ -618,25 +618,40 @@ button.add {
 td {
     text-align: center;
 }
+
 th {
     font-size: 18px;
 }
+
 .leaderboard {
     height:inherit;
     width: inherit;
     overflow-y:scroll;
     empty-cells: hide;
 }
+
+.leaderboard_row:hover {
+    background-color: #ecf8ff !important;
+}
+
 .leaderboard_box {
     overflow: auto;
     width: inherit;
     overflow-x: hidden;
 }
+
 .leaderboard_container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+.leaderboard_categories {
+    position: sticky;
+    top:0;
+    background-color: #FFF071;
+}
+
 .leaderboard_logo {
     width:25rem;
     height:7rem;
@@ -647,7 +662,6 @@ th {
     width:50px;
     height:50px;
 }
-
 
 .user_container {
     background-color: white;
@@ -676,9 +690,11 @@ th {
     transition: all .15s ease-in-out;
     align-self: center;
 }
+
 .center {
     align-self: center;
 }
+
 .no_button {
     background:none;
     border:none;
