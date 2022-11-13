@@ -20,11 +20,13 @@ db.each("SELECT * FROM users", (err, row) => {
     // console.log(row);
 });
 
+// render the index page and console log current user
 app.get('/', (req, res) => {
     console.log(user)
     res.render("index.ejs");
 })
 
+// current user object
 let user = {};
 
 
@@ -53,10 +55,6 @@ app.post('/select', (req, res) => {
             })
         }
     });
-    // db.get(`SELECT * FROM users WHERE name=(?)`, [user.name], (err, row) => {
-    //     // user.id = row.id;
-    //     console.log(row);
-    // })
     res.render("select-pal.ejs", { user });
 })
 
@@ -72,10 +70,6 @@ app.post('/goal', (req, res) => {
         db.run(`UPDATE users SET water_goal=(?) WHERE name=(?)`, [user.water_drank, user.name]);
         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
     }
-    // db.each("SELECT * FROM users", (err, row) => {
-    //     console.log(row);
-    // });
-    // console.log(user);
     res.render("goal.ejs", { user });
 })
 
@@ -105,10 +99,9 @@ app.get("/data", (req, res) => {
 })
 
 
-//axios post reqeust to the data for water drank and to update the history
+//axios post request to the data for water drank and to update the history
 app.post("/data", (req, res) => {
     if (req.body.water_drank) {
-        console.log(user.water_drank, req.body.water_drank)
         user.water_drank = req.body.water_drank;
         db.run(`UPDATE users SET water_drank=(?) WHERE name=(?)`, [user.water_drank, user.name]);
         console.log(user.water_drank);
@@ -116,11 +109,13 @@ app.post("/data", (req, res) => {
     res.send("sending monkey data 🐒");
 })
 
+
+// water drink history for homepage for fetch requests 
 history = []
 app.get("/history", (req, res) => {
     res.json(user.history);
 })
-
+// post and push water intake into an array that is saved on express server
 app.post("/history", (req, res) => {
     history.push(req.body.history[req.body.history.length - 1]);
     user.history = history;
@@ -128,6 +123,7 @@ app.post("/history", (req, res) => {
 })
 
 
+// leaderboard page that sorts by score and updates every user's score
 app.get('/leaderboard', (req, res) => {
     db.run('UPDATE users SET score = ROUND((CAST([water_drank] AS FLOAT) / water_goal * 100))');
     db.all('SELECT * FROM users ORDER BY score DESC', (err, rows) => {
@@ -135,6 +131,7 @@ app.get('/leaderboard', (req, res) => {
     });
 })
 
+// leaderboard page that sorts by amount of water drank
 app.get('/leaderboard-score', (req, res) => {
     db.all('SELECT * FROM users ORDER BY water_drank DESC', (err, rows) => {
         db.run('UPDATE users SET score = ROUND((CAST([water_drank] AS FLOAT) / water_goal * 100))')
