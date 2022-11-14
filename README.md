@@ -2,8 +2,7 @@
 Basic Node.js and Express app that tracks a users water goal and intake. Templatted with EJS and uses sqlite3 to handle its database. It is hosted on [Heroku](https://aquapal.herokuapp.com/) as of right now.
 <br>
 <br>
-if downloading, run the app with npm run dev or node . or nodemon server.js,
-delete node_modules and package-lock.json and then npm install
+if downloading the repo, npm install and then run the app with either node . or nodemon server.js, or npm run dev
 # Aqua Pal
 
 Features: 
@@ -15,6 +14,14 @@ Features:
 
 ## Mascots
 <div align="center">
-<img src="/public/monkee.svg" style="width:250px; height:250px;" alt="im a monkey"/>
+<div>
+<img src="/public/monkee_happy.svg" style="width:250px; height:250px;" alt="im a monkey"/>
+<img src="/public/monkee.svg" style="width:250px; height:250px;" alt="im an otter"/>
+<img src="/public/monkee_sad.svg" style="width:250px; height:250px;" alt="im a monkey"/>
+</div>
+<div>
 <img src="/public/otter.svg" style="width:250px; height:250px;" alt="im an otter"/>
+<img src="/public/otter.svg" style="width:250px; height:250px;" alt="im a monkey"/>
+<img src="/public/otter_sad.svg" style="width:250px; height:250px;" alt="im an otter"/>
+</div>
 </div>
