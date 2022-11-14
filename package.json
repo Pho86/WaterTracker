@@ -1,23 +1,31 @@
 {
   "name": "watertracker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic web application for Web Dev 3 (COMP 3130) that helps you reach your water drinking goals.",
   "main": "server.js",
+  "dev": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Pho86/WaterTracker.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "monkey and otter",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Pho86/WaterTracker/issues"
   },
   "homepage": "https://github.com/Pho86/WaterTracker#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "axios": "^1.1.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

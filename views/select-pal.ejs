@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaPal</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body style="overflow: hidden;">
+  <div class="ocean">
+    <div class="bubble one"></div>
+    <div class="bubble two"></div>
+    <div class="bubble three"></div>
+    <div class="bubble four"></div>
+    <div class="bubble five"></div>
+    <div class="bubble six"></div>
+    <div class="main_container">
+      <div class="white_container">
+        <h1 class="header">
+          <%= user.name %>, Select a Pal
+        </h1>
+        <div>
+          <form action="/goal" method="post" class="pal_cont">
+            <button type="submit" name="pet_type" value="monkee" alt="monkey pet button" class="mascot_select_button">
+              <img class="mascot_select" src="monkee.svg" alt="monkey pet" data-pet="monkey"/>
+            <button type="submit" name="pet_type" value="otter" alt="otter pet button" class="mascot_select_button">
+              <img class="mascot_select" src="otter.svg" alt="otter pet" data-pet="otter"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let monkey = document.querySelector('[data-pet=monkey]');
+    let otter = document.querySelector('[data-pet=otter]');
+    monkey.addEventListener('mouseover', (event) => {
+      event.target.src = "/monkee_happy.svg";
+      setTimeout(() => {
+        otter.src = "/otter_sad.svg";
+      }, "150");
+    })
+    monkey.addEventListener('mouseleave', (event) => {
+      event.target.src = "/monkee.svg";
+      setTimeout(() => {
+        otter.src = "/otter.svg";
+      }, "150");
+    })
+    otter.addEventListener('mouseover', (event) => {
+      event.target.src = "/otter_happy.svg";
+      setTimeout(() => {
+        monkey.src = "/monkee_sad.svg";
+      }, "150");
+    })
+    otter.addEventListener('mouseleave', (event) => {
+      event.target.src = "/otter.svg";
+      setTimeout(() => {
+        monkey.src = "/monkee.svg";
+      }, "150");
+    })
+
+  </script>
+</body>
+
+</html>

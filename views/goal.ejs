@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaPal</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body style="overflow: hidden;">
+    <div class="ocean">
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+        <div class="bubble four"></div>
+        <div class="bubble five"></div>
+        <div class="bubble six"></div>
+        <div class="main_container">
+            <div class="white_container">
+                <h1 class="header">What is your water goal?</h1>
+                <form class="mainForm" action="/home" method="post">
+                    <input class="nameInput" type="number" placeholder="2500mL" name="water_goal" min="1" max="15000"
+                        maxlength="5" required>
+                    <button class="mainBtn" type="submit">Confirm</button>
+                </form>
+                <% if (user.pet_type === "monkee") { %>
+                    <img class="mascot" src="monkee_happy.svg" alt="your pet monkey"/>
+                <% } else {%>
+                    <img class="mascot" src="otter_happy.svg" alt="your pet otter"/>
+                <% } %>
+                <!-- <img class="mascot" src="monkee.svg" /> -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        //i fix this later 
+        const renderPet = () => {
+            fetch('../data')
+                .then(res => res.json())
+                .then(function (user) {
+                    let currentUser = user;
+                    if (currentUser.pet_type === "otter") {
+                        document.querySelector("link[rel*='icon']").href = "favicon1.ico";
+                    }
+                })
+        }
+        renderPet();
+    </script>
+</body>
+
+
+</html>

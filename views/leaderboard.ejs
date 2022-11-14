@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AquaPal</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+
+<body style="overflow: hidden;">
+    <div class="ocean">
+        <div class="bubble one"></div>
+        <div class="bubble two"></div>
+        <div class="bubble three"></div>
+        <div class="bubble four"></div>
+        <div class="bubble five"></div>
+        <div class="bubble six"></div>
+        
+        
+        <div class="skip_splash_div">
+            <form method="post" action="/">
+                <button class="no_button">
+                    <p class="skip_splash" href="views/index.ejs">Restart</p>
+                </button>
+              </form>
+        </div>
+        
+        <div class="main_container leaderboard_extension" >
+            <div class="leaderboard_container">
+                <img class="leaderboard_logo" src="/logo.png" alt="aquapal logo">
+                <div class="white_container" style="width:800px; justify-content: flex-start">
+                    <h1 class="header">Leaderboard</h1>
+                    <div class="leaderboard_box">
+                    <table class="leaderboard" cellspacing="0" cellpadding="0">
+                        <tr class="leaderboard_categories">
+                            <th>#</th>
+                            <th>Pet</th>
+                            <th>Name</th>
+                            <th>ID#</th>
+                            <th>Water Drank</th>
+                            <th>Water Goal</th>
+                            <th>Score</th>
+                        </tr>
+                    <% for(let i=0; i < 10; i++) { %>
+                        <tr class="leaderboard_row" data-id=<%= users[i].id %>>
+                            <td><%=[i+1] %></td>
+                            <td>
+                            <% if (users[i].pet_type === "monkee") { %>
+                                <img src="/monkee_happy.svg" class="mascot_icon" alt="monkey pet">
+                            <% } else {%>
+                                <img src="/otter_happy.svg" class="mascot_icon" alt="otter pet">
+                            <% } %>
+                            </td>
+                            <td><%= users[i].name %></td>
+                            <td><%= users[i].id %></td>
+                            <td><%= users[i].water_drank %>mL</td>
+                            <td><%= users[i].water_goal %>mL</td>
+                            <td><%= users[i].score %></td>
+                        </tr>
+                        <% } %>
+                        <% for(let i=10; i < 25; i++) { %>
+                            <tr class="leaderboard_row" data-id=<%= users[i].id %>>
+                                <td><%=[i+1] %></td>
+                                <td>
+                                    <% if (users[i].pet_type === "monkee") { %>
+                                        <img src="/monkee.svg" class="mascot_icon" alt="monkey pet">
+                                    <% } else {%>
+                                        <img src="/otter.svg" class="mascot_icon" alt="otter pet">
+                                    <% } %>
+                                </td>
+                                <td><%= users[i].name %></td>
+                                <td><%= users[i].id %></td>
+                                <td><%= users[i].water_drank %>mL</td>
+                                <td><%= users[i].water_goal %>mL</td>
+                                <td><%= users[i].score %></td>
+                            </tr>
+                        <% } %>
+                        <% for(let i=26; i < users.length; i++) { %>
+                            <tr class="leaderboard_row" data-id=<%= users[i].id %>>
+                                <td><%=[i+1] %></td>
+                                <td>
+                                    <% if (users[i].pet_type === "monkee") { %>
+                                        <img src="/monkee_sad.svg" class="mascot_icon" alt="monkey pet">
+                                    <% } else {%>
+                                        <img src="/otter_sad.svg" class="mascot_icon" alt="otter pet">
+                                    <% } %>
+                                </td>
+                                <td><%= users[i].name %></td>
+                                <td><%= users[i].id %></td>
+                                <td><%= users[i].water_drank %>mL</td>
+                                <td><%= users[i].water_goal %>mL</td>
+                                <td><%= users[i].score %></td>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <% if (user) { %>
+                <div class="user_container" data-id= <%= user.id %>
+                    <p><b>This is you:</b></p>
+                    <% if (user.pet_type === "monkee") { %>
+                        <img src="/monkee_happy.svg" class="mascot_icon center" alt="monkey pet">
+                    <% } else {%>
+                        <img src="/monkee_happy.svg" class="mascot_icon center" alt="otter pet">
+                    <% } %>
+                    <p>Name: <%= user.name %></p>
+                    <p>ID:<%= user.id %></p>
+                    <p>Water Drank: <%= user.water_drank %>mL</p>
+                    <p>Water Goal: <%= user.water_goal %>mL</p>
+                    <p>Score: <%= (user.water_drank/user.water_goal * 100).toFixed(0) %></p>
+                    <form action="/home" method="post" class="center">
+                        <button class="leaderboard_button" type="submit">Go drink water</button>
+                    </form>
+                </div>
+                <% } else {%>
+                    <div class="user_container" data-id>
+                        <p>It seems you have no account, please make one.</p>
+                        <div>
+                            <img src="/monkee.svg" class="mascot_icon" alt="monkey pet">
+                            <img src="/otter.svg" class="mascot_icon" alt="otter pet">
+                        </div>
+                        <form action="/" method="post" class="center">
+                            <button class="leaderboard_button" type="submit">Start</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let eachUser = document.querySelectorAll('.leaderboard_row');
+    let userData = document.querySelector('.user_container');
+    for(let i =0; i < 3; i++) {
+        eachUser[0].style.background = "#FAF1A2"
+        eachUser[1].style.background = "#FFF7AC"
+        eachUser[2].style.background = "#FFFCE4"
+    }
+    if (userData) {
+        let userID = userData.dataset.id;
+        let userDiv = document.querySelector(`[data-id="${userID}"]`);
+        userDiv.style.background = "#C7F3FC";
+    }
+</script>
+
+</html>

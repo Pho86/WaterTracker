@@ -1,1 +1,6 @@
 /node_modules
+/db
+.DS_Store
+
+monkeys
+package-lock.json
