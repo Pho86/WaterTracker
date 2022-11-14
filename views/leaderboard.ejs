@@ -27,14 +27,15 @@
                 </button>
               </form>
         </div>
-        <div class="main_container" style="display:flex; flex-direction: row; gap:5px;" >
+        
+        <div class="main_container leaderboard_extension" >
             <div class="leaderboard_container">
                 <img class="leaderboard_logo" src="/logo.png" alt="aquapal logo">
                 <div class="white_container" style="width:800px; justify-content: flex-start">
                     <h1 class="header">Leaderboard</h1>
                     <div class="leaderboard_box">
                     <table class="leaderboard" cellspacing="0" cellpadding="0">
-                        <tr class="leaderboard_row leaderboard_categories">
+                        <tr class="leaderboard_categories">
                             <th>#</th>
                             <th>Pet</th>
                             <th>Name</th>
@@ -43,14 +44,14 @@
                             <th>Water Goal</th>
                             <th>Score</th>
                         </tr>
-                    <% for(let i=0; i < 3; i++) { %>
+                    <% for(let i=0; i < 10; i++) { %>
                         <tr class="leaderboard_row" data-id=<%= users[i].id %>>
                             <td><%=[i+1] %></td>
                             <td>
                             <% if (users[i].pet_type === "monkee") { %>
-                                <img src="/monkee.svg" class="mascot_icon" alt="monkey pet">
+                                <img src="/monkee_happy.svg" class="mascot_icon" alt="monkey pet">
                             <% } else {%>
-                                <img src="/otter.svg" class="mascot_icon" alt="otter pet">
+                                <img src="/otter_happy.svg" class="mascot_icon" alt="otter pet">
                             <% } %>
                             </td>
                             <td><%= users[i].name %></td>
@@ -60,7 +61,7 @@
                             <td><%= users[i].score %></td>
                         </tr>
                         <% } %>
-                        <% for(let i=3; i < users.length; i++) { %>
+                        <% for(let i=10; i < 25; i++) { %>
                             <tr class="leaderboard_row" data-id=<%= users[i].id %>>
                                 <td><%=[i+1] %></td>
                                 <td>
@@ -76,7 +77,24 @@
                                 <td><%= users[i].water_goal %>mL</td>
                                 <td><%= users[i].score %></td>
                             </tr>
-                            <% } %>
+                        <% } %>
+                        <% for(let i=26; i < users.length; i++) { %>
+                            <tr class="leaderboard_row" data-id=<%= users[i].id %>>
+                                <td><%=[i+1] %></td>
+                                <td>
+                                    <% if (users[i].pet_type === "monkee") { %>
+                                        <img src="/monkee_sad.svg" class="mascot_icon" alt="monkey pet">
+                                    <% } else {%>
+                                        <img src="/otter_sad.svg" class="mascot_icon" alt="otter pet">
+                                    <% } %>
+                                </td>
+                                <td><%= users[i].name %></td>
+                                <td><%= users[i].id %></td>
+                                <td><%= users[i].water_drank %>mL</td>
+                                <td><%= users[i].water_goal %>mL</td>
+                                <td><%= users[i].score %></td>
+                            </tr>
+                        <% } %>
                     </table>
                 </div>
             </div>
@@ -85,9 +103,9 @@
                 <div class="user_container" data-id= <%= user.id %>
                     <p><b>This is you:</b></p>
                     <% if (user.pet_type === "monkee") { %>
-                        <img src="/monkee.svg" class="mascot_icon center" alt="monkey pet">
+                        <img src="/monkee_happy.svg" class="mascot_icon center" alt="monkey pet">
                     <% } else {%>
-                        <img src="/otter.svg" class="mascot_icon center" alt="otter pet">
+                        <img src="/monkee_happy.svg" class="mascot_icon center" alt="otter pet">
                     <% } %>
                     <p>Name: <%= user.name %></p>
                     <p>ID:<%= user.id %></p>
@@ -119,9 +137,9 @@
     let eachUser = document.querySelectorAll('.leaderboard_row');
     let userData = document.querySelector('.user_container');
     for(let i =0; i < 3; i++) {
-        eachUser[1].style.background = "#FAF1A2"
-        eachUser[2].style.background = "#FFF7AC"
-        eachUser[3].style.background = "#FFFCE4"
+        eachUser[0].style.background = "#FAF1A2"
+        eachUser[1].style.background = "#FFF7AC"
+        eachUser[2].style.background = "#FFFCE4"
     }
     if (userData) {
         let userID = userData.dataset.id;
