@@ -1,18 +1,17 @@
-// fetch the current users data and return it
+// fetch the current users data from the server and return it as a json
 async function fetchUser() {
    const data = await fetch('../data');
    const currentUser = await data.json();
    return currentUser;
 }
 
-// render user data that constantly changes when water is intaked with async and await function
+// render user data that constantly changes when water is intaked with an async and await function
 const renderUser = async () => {
    try {
       const currentUser = await fetchUser()
       console.log(currentUser);
       updateFavicon(currentUser.pet_type)
-      updatePet(currentUser.pet_type);
-      updateWater(currentUser.water_drank, currentUser.water_goal);
+      updateWater(currentUser.water_drank, currentUser.water_goal , currentUser.pet_type);
       await updateHistory(historyWater);
    }
    catch (error) {
@@ -24,7 +23,7 @@ renderUser();
 
 
 let historyWater = []
-// send data with the popup buttons to /data as a post request when clicked
+// send data with the popup buttons to /data as a post request with axios when clicked
 let water_inputs = document.querySelectorAll('.water_send');
 for (let i = 0; i < water_inputs.length; i++) {
    water_inputs[i].addEventListener("click", async (event) => {
@@ -74,13 +73,6 @@ custom_water_button.addEventListener("click", async (event) => {
 })
 
 
-// update pet image
-function updatePet(petType) {
-   let pet = document.querySelector('.mascot');
-   pet.src = petType + '.svg';
-}
-
-
 // update favicon depending on what pet you have
 function updateFavicon(pet_type) {
    if (pet_type === "monkee") {
@@ -88,6 +80,18 @@ function updateFavicon(pet_type) {
    }
    if (pet_type === "otter") {
       document.querySelector("link[rel*='icon']").href = "favicon1.ico";
+   }
+}
+
+
+// update pet image, called in updateWater function, if happiness parameter is given, change pet image depending on the string given, otherwise return neutral 
+function updatePet(petType, happiness) {
+   let pet = document.querySelector('.mascot');
+   if (happiness) {
+      pet.src = petType + '_' + happiness + '.svg';
+   }
+   else {
+      pet.src = petType + '.svg';
    }
 }
 
@@ -118,7 +122,7 @@ addButton.addEventListener('click', function (event) {
 
 
 // update the progress bar depending on % of goal completed and change the pet's happiness level
-function updateWater(current, goal) {
+function updateWater(current, goal, currentUserPet) {
    let currentGoal = document.querySelector('.current_goal');
    let progressBar = document.querySelector('.progress_bar');
    currentGoal.innerText = `${current}mL/${goal}mL`;
@@ -127,15 +131,18 @@ function updateWater(current, goal) {
    progressBar.value = progress;
    if (progress < 33) {
       updateBubble(-1);
+      updatePet(currentUserPet, "sad");
    }
    else if (progress > 67) {
       updateBubble(1);
+      updatePet(currentUserPet, "happy");
       if (progress > 100) {
          finishGoal();
       }
    }
    else {
       updateBubble(0);
+      updatePet(currentUserPet);
    }
 }
 
@@ -150,7 +157,7 @@ function finishGoal() {
 
 
 // update the pet text bubble randomly depending on mood and transform the text bubble by scaling up/down
-// 1 = happy, 0 = neutral, -1 = sad
+// moods are === 1 = happy, 0 = neutral, -1 = sad
 function updateBubble(mood) {
    let bubbleText = document.querySelector('.mascot_text');
    bubbleText.style.transform = "scale(1.5)";

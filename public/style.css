@@ -623,6 +623,12 @@ th {
     font-size: 18px;
 }
 
+.leaderboard_extension {
+    display:flex;
+    flex-direction: row;
+    gap:5px;
+}
+
 .leaderboard {
     height:inherit;
     width: inherit;

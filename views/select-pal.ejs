@@ -26,14 +26,45 @@
         <div>
           <form action="/goal" method="post" class="pal_cont">
             <button type="submit" name="pet_type" value="monkee" alt="monkey pet button" class="mascot_select_button">
-              <img class="mascot_select" src="monkee.svg" alt="monkey pet" />
+              <img class="mascot_select" src="monkee.svg" alt="monkey pet" data-pet="monkey"/>
             <button type="submit" name="pet_type" value="otter" alt="otter pet button" class="mascot_select_button">
-              <img class="mascot_select" src="otter.svg" alt="otter pet" />
+              <img class="mascot_select" src="otter.svg" alt="otter pet" data-pet="otter"/>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+
+    let monkey = document.querySelector('[data-pet=monkey]');
+    let otter = document.querySelector('[data-pet=otter]');
+    monkey.addEventListener('mouseover', (event) => {
+      event.target.src = "/monkee_happy.svg";
+      setTimeout(() => {
+        otter.src = "/otter_sad.svg";
+      }, "150");
+    })
+    monkey.addEventListener('mouseleave', (event) => {
+      event.target.src = "/monkee.svg";
+      setTimeout(() => {
+        otter.src = "/otter.svg";
+      }, "150");
+    })
+    otter.addEventListener('mouseover', (event) => {
+      event.target.src = "/otter_happy.svg";
+      setTimeout(() => {
+        monkey.src = "/monkee_sad.svg";
+      }, "150");
+    })
+    otter.addEventListener('mouseleave', (event) => {
+      event.target.src = "/otter.svg";
+      setTimeout(() => {
+        monkey.src = "/monkee.svg";
+      }, "150");
+    })
+
+  </script>
 </body>
 
 </html>
