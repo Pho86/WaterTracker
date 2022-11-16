@@ -20,7 +20,7 @@ Features:
 <img src="/public/monkee_sad.svg" style="width:250px; height:250px;" alt="im a monkey"/>
 </div>
 <div>
-<img src="/public/otter.svg" style="width:250px; height:250px;" alt="im an otter"/>
+<img src="/public/otter_happy.svg" style="width:250px; height:250px;" alt="im an otter"/>
 <img src="/public/otter.svg" style="width:250px; height:250px;" alt="im a monkey"/>
 <img src="/public/otter_sad.svg" style="width:250px; height:250px;" alt="im an otter"/>
 </div>
