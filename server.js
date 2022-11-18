@@ -41,6 +41,7 @@ app.post('/', (req, res) => {
 app.post('/select', (req, res) => {
     user.name = req.body.name;
     db.get("SELECT * FROM users where name=(?)", [user.name], (err, row) => {
+        if(err) throw error;
         if (row === undefined) {
             db.run("INSERT INTO users (name) values (?)", [user.name]);
             db.get("SELECT id FROM users where name=?", [user.name], (err, row)=> {
@@ -50,6 +51,7 @@ app.post('/select', (req, res) => {
         }
         else {
             db.get("SELECT id FROM users where name=?", [user.name], (err, row)=> {
+                if(err) throw error;
                 user.id = row.id
                 console.log(user.id)
             })
