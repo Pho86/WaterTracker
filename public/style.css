@@ -2,6 +2,7 @@
 
 html {
     /* background-color: #8FE6F5; */
+    font-size: 16px;
     background: linear-gradient(0deg, rgba(124, 206, 221, 1) 0%, rgba(143, 230, 245, 1) 60%, rgba(178, 234, 244, 1) 100%);
 }
 
@@ -30,7 +31,7 @@ input {
     align-items: center;
     border-radius: 20px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
-    padding: 10px 20px 10px;
+    padding: 1em 2em;
 }
 
 .main_container {
@@ -50,7 +51,7 @@ input {
     justify-content: space-between;
     align-items: flex-end;
     flex-direction: row;
-    width: inherit;
+    width: 100%;
 }
 
 .mascot_div {
@@ -84,6 +85,7 @@ input {
     display: flex;
     flex-direction: row;
     width: inherit;
+    gap:1em;
     align-items: flex-start;
 }
 
@@ -109,7 +111,8 @@ input {
     align-self: flex-end;
     margin: 0px;
     align-items: baseline;
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    text-align: center;
 }
 
 .name_label {
@@ -716,10 +719,12 @@ th {
 
 
 /* TEMP MEDIA QUERIES */
+
 @media screen and (max-width:800px) {
     .white_container {
         width: 80%;
-        height:80vh;
+        height:75vh;
+        gap: 1em;
     }
     progress {
         width: 100% !important;
@@ -753,6 +758,7 @@ th {
     .bottom_section {
         flex-direction: column;
         align-items: flex-start ;
+        gap:2em;
     }
     .add_div, .name_cont, .history_cont {
         align-self: center;
@@ -763,9 +769,33 @@ th {
     
     .mascot_text {
         margin-left: 0;
-        margin-top: -80px;
+        /* margin-top: -80px; */
     }
     .new_goal {
         width:175px;
+    }
+    html, body {
+        font-size: 14px;
+    }
+    .custInput {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .white_container {
+        width: 90%;
+        height:80vh;
+        gap: 1em;
+    }
+    .mascot, .mascot_select {
+        width: 125px;
+        height: 125px;
+    }
+    .addPopup {
+        width: 90%;
+    }
+    html, body {
+        font-size: 12px;
     }
 }
